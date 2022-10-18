@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+            crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<div class="row" id="header">
+
+</div>
+<div class="row container">
+    <h1>container</h1>
+</div>
+<script src="layout/header.js"></script>
+<script>
+    let user = JSON.parse(window.localStorage.getItem("Authorization")) ;
+    console.log(user.token)
+    $.ajax({
+        type: "GET",
+        headers: {
+            Authorization: "Bearer "+ user.token,
+        },
+
+        url: "http://localhost:8080/rest/users",
+        //xử lý khi thành công
+        success: function (data) {
+            console.log("s",data)
+        },
+        error: function () {
+            alert("err")
+        }
+
+    });
+</script>
+</body>
+</html>
