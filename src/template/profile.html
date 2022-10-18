@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<div id="header"></div>
+<h1 id="id"></h1>
+<h1 id="username"></h1>
+<h1 id="role"></h1>
+<h1 id="status"></h1>
+<h6 id="token"></h6>
+
+<script>
+    showProfileData()
+    function showProfileData(){
+        let profile = window.localStorage.getItem("Authorization")
+        profile = JSON.parse(profile);
+        console.log('d',profile)
+        console.log(profile.username)
+        $("#id").text(profile.id)
+        $("#username").text(profile.username)
+        $("#role").text(profile.role)
+        $("#status").text(profile.status)
+        $("#token").text(profile.token)
+    }
+</script>
+<script src="layout/header.js"></script>
+
+</body>
+</html>
