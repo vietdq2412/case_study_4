@@ -78,7 +78,7 @@
             },
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(account),
-            url: "http://localhost:8080/rest/login",
+            url: "http://localhost:8081/rest/login",
             //xử lý khi thành công
             success: function (data) {
                 window.localStorage.setItem("Authorization", JSON.stringify(data));
