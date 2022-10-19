@@ -81,7 +81,7 @@
                                     <input type="text" placeholder="Username" id="username">
                                     <input type="password" placeholder="Password" id="password">
                                     <input type="checkbox"><label>remember me</label>
-                                    <button type="submit" data-ripple="">sign in</button>
+                                    <button type="submit" data-ripple="" onclick="login()">sign in</button>
                                     <a class="forgot underline" href="#" title="">forgot password?</a>
                                 </form>
                                 <a class="with-smedia facebook" href="#" title="" data-ripple=""><i class="fa fa-facebook"></i></a>
@@ -98,9 +98,42 @@
         </section>
          
     </div>
-    
+
     	<script src="js/main.min.js"></script>
 		<script src="js/script.js"></script>
+<script>
+    function login() {
+        let account = {
+            username: $("#username").val(),
+            password: $("#password").val()
+        }
+        console.log(account)
+        $.ajax({
+            type: "Post",
+            headers: {
+                Authorization: "",
+            },
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(account),
+            url: "http://localhost:8081/rest/login",
+            //xử lý khi thành công
+            success: function (data) {
+                window.localStorage.setItem("Authorization", JSON.stringify(data));
+                console.log(data)
+                $("#message").text("login succes! " + data);
+                $("#error").text("")
+                window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/newsfeed.html"
+            },
+            error: function (data) {4
+                console.log(data)
+                $("#message").text("")
+                $("#error").text("invalid username or password!")
+            }
+        });
+        //chặn sự kiện mặc định của thẻ
+        event.preventDefault();
+    }
+</script>
 </body>	
 
 </html>
