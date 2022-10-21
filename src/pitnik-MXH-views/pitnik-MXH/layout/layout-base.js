@@ -1,6 +1,10 @@
 let user = window.localStorage.getItem("Authorization");
 user = JSON.parse(user);
 
+let username = ""
+if (user != "" && user != null){
+    username = user.username;
+}
 let responsive_header = `<div id="responsive-header" class="responsive-header">
             <div class="mh-head first Sticky">
 \t\t\t<span class="mh-btns-left">
@@ -771,7 +775,7 @@ let topbar_stick = `<div id="topbar-stick" class="topbar stick">
                     </li>
                 </ul>
                 <div class="user-img">
-                    <h5>${user.username}</h5>
+                    <h5>${username}</h5>
                     <img src="images/resources/admin.jpg" alt="">
                     <span class="status f-online"></span>
                     <div class="user-setting">

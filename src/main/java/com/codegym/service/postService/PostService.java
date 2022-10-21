@@ -21,7 +21,7 @@ public class PostService implements IPostService{
     @Override
     public boolean save(Post post) {
          boolean check = iPostRepo.existsById(post.getId());
-         if(!check) {
+         if(!check) {// check cai nay lam gi?
              iPostRepo.save(post);
              return true;
          }
