@@ -337,22 +337,22 @@
                                             </ul>
                                             <button class="post-btn" type="submit" data-ripple="">Post</button>
                                         </div>
-                                        <div class="add-location-post">
-                                            <span>Drag map point to selected area</span>
-                                            <div class="row">
+<!--                                        <div class="add-location-post">-->
+<!--                                            <span>Drag map point to selected area</span>-->
+<!--                                            <div class="row">-->
 
-                                                <div class="col-lg-6">
-                                                    <label class="control-label">Lat :</label>
-                                                    <input type="text" class="" id="us3-lat"/>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <label>Long :</label>
-                                                    <input type="text" class="" id="us3-lon"/>
-                                                </div>
-                                            </div>
-                                            <!-- map -->
-                                            <div id="us3"></div>
-                                        </div>
+<!--                                                <div class="col-lg-6">-->
+<!--                                                    <label class="control-label">Lat :</label>-->
+<!--                                                    <input type="text" class="" id="us3-lat"/>-->
+<!--                                                </div>-->
+<!--                                                <div class="col-lg-6">-->
+<!--                                                    <label>Long :</label>-->
+<!--                                                    <input type="text" class="" id="us3-lon"/>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            &lt;!&ndash; map &ndash;&gt;-->
+<!--                                            <div id="us3"></div>-->
+<!--                                        </div>-->
                                     </div>
                                 </div><!-- add post new box -->
                                 <div class="central-meta">
@@ -484,17 +484,11 @@
                                                         <div id="btns-wrapper"></div>
                                                         <div id="slideshow">
                                                             <img class="slide"
-                                                                 src="https://placehold.it/856x380/FF6347/FFFFFF&amp;text=1"
+                                                                 src="https://vcdn1-ngoisao.vnecdn.net/2022/02/08/cat1-6063-1644307822.jpg?w=0&h=0&q=100&dpr=2&fit=crop&s=-reRk-NGRL_MQIGqKLq0gw"
                                                                  alt="11"/>
                                                             <img class="slide"
-                                                                 src="https://placehold.it/856x380/6FC6F7/FFFFFF&amp;text=2"
+                                                                 src="https://vcdn1-ngoisao.vnecdn.net/2022/02/08/cat1-6063-1644307822.jpg?w=0&h=0&q=100&dpr=2&fit=crop&s=-reRk-NGRL_MQIGqKLq0gw"
                                                                  alt="2"/>
-                                                            <img class="slide"
-                                                                 src="https://placehold.it/856x380/f3e686/FFFFFF&amp;text=3"
-                                                                 alt="3"/>
-                                                            <img class="slide"
-                                                                 src="https://placehold.it/856x380/71eea3/FFFFFF&amp;text=4"
-                                                                 alt="4"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2440,45 +2434,36 @@
 <script src="js/main.min.js"></script>
 <script src="js/jquery-stories.js"></script>
 <script src="js/toast-notificatons.js"></script>
-<script src="../../../cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
 <!-- For timeline slide show -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
 <!-- for location picker map -->
-<script src="js/locationpicker.jquery.js"></script><!-- for loaction picker map -->
-<script src="js/map-init.js"></script><!-- map initilasition -->
+<!--<script src="js/locationpicker.jquery.js"></script>&lt;!&ndash; for loaction picker map &ndash;&gt;-->
+<!--<script src="js/map-init.js"></script>&lt;!&ndash; map initilasition &ndash;&gt;-->
 <script src="js/page-tourintro.js"></script>
 <script src="js/page-tour-init.js"></script>
 <script src="js/script.js"></script>
 <script src="layout/layout-base.js"></script>
 <script>
-    let user = window.localStorage.getItem("Authorization");
-    alert(2)
-    console.log("dssfd")
-    if (user == null || user == ""){
-        alert(1)
-        window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/login.html"
-    }else {
-    }
     jQuery(document).ready(function ($) {
 
-        $('#us3').locationpicker({
-            location: {
-                latitude: -8.681013,
-                longitude: 115.23506410000005
-            },
-            radius: 0,
-            inputBinding: {
-                latitudeInput: $('#us3-lat'),
-                longitudeInput: $('#us3-lon'),
-                radiusInput: $('#us3-radius'),
-                locationNameInput: $('#us3-address')
-            },
-            enableAutocomplete: true,
-            onchanged: function (currentLocation, radius, isMarkerDropped) {
-                // Uncomment line below to show alert on each Location Changed event
-                //alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
-            }
-        });
+        // $('#us3').locationpicker({
+        //     location: {
+        //         latitude: -8.681013,
+        //         longitude: 115.23506410000005
+        //     },
+        //     radius: 0,
+        //     inputBinding: {
+        //         latitudeInput: $('#us3-lat'),
+        //         longitudeInput: $('#us3-lon'),
+        //         radiusInput: $('#us3-radius'),
+        //         locationNameInput: $('#us3-address')
+        //     },
+        //     enableAutocomplete: true,
+        //     onchanged: function (currentLocation, radius, isMarkerDropped) {
+        //         // Uncomment line below to show alert on each Location Changed event
+        //         //alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
+        //     }
+        // });
 
         if ($.isFunction($.fn.toast)) {
             $.toast({

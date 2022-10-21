@@ -5,6 +5,37 @@ let username = ""
 if (user != "" && user != null){
     username = user.username;
 }
+
+let userImg = `<div class="user-img">
+                    <h5>${username}</h5>
+                    <img src="images/resources/admin.jpg" alt="">
+                    <span class="status f-online"></span>
+                    <div class="user-setting">
+                        <span class="seting-title">Chat setting <a href="#" title="">see all</a></span>
+                        <ul class="chat-setting">
+                            <li><a href="#" title=""><span class="status f-online"></span>online</a></li>
+                            <li><a href="#" title=""><span class="status f-away"></span>away</a></li>
+                            <li><a href="#" title=""><span class="status f-off"></span>offline</a></li>
+                        </ul>
+                        <span class="seting-title">User setting <a href="#" title="">see all</a></span>
+                        <ul class="log-out">
+                            <li><a href="about.html" title=""><i class="ti-user"></i> view profile</a></li>
+                            <li><a href="setting.html" title=""><i class="ti-pencil-alt"></i>edit profile</a></li>
+                            <li><a href="#" title=""><i class="ti-target"></i>activity log</a></li>
+                            <li><a href="setting.html" title=""><i class="ti-settings"></i>account setting</a></li>
+                            <li><a href="logout.html" title=""><i class="ti-power-off"></i>log out</a></li>
+                        </ul>
+                    </div>
+                </div>`;
+if (username==null || username == ""){
+    userImg = `<div class="user-img"><a href="/case4/src/pitnik-MXH-views/pitnik-MXH/login.html" title=""><i class="ti-power-off"></i> log in</a></div>`;
+}
+// if (user == null || user == ""){
+//     alert(1)
+//     window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/login.html"
+// }else {
+// }
+
 let responsive_header = `<div id="responsive-header" class="responsive-header">
             <div class="mh-head first Sticky">
 \t\t\t<span class="mh-btns-left">
@@ -774,27 +805,7 @@ let topbar_stick = `<div id="topbar-stick" class="topbar stick">
                         </div>
                     </li>
                 </ul>
-                <div class="user-img">
-                    <h5>${username}</h5>
-                    <img src="images/resources/admin.jpg" alt="">
-                    <span class="status f-online"></span>
-                    <div class="user-setting">
-                        <span class="seting-title">Chat setting <a href="#" title="">see all</a></span>
-                        <ul class="chat-setting">
-                            <li><a href="#" title=""><span class="status f-online"></span>online</a></li>
-                            <li><a href="#" title=""><span class="status f-away"></span>away</a></li>
-                            <li><a href="#" title=""><span class="status f-off"></span>offline</a></li>
-                        </ul>
-                        <span class="seting-title">User setting <a href="#" title="">see all</a></span>
-                        <ul class="log-out">
-                            <li><a href="about.html" title=""><i class="ti-user"></i> view profile</a></li>
-                            <li><a href="setting.html" title=""><i class="ti-pencil-alt"></i>edit profile</a></li>
-                            <li><a href="#" title=""><i class="ti-target"></i>activity log</a></li>
-                            <li><a href="setting.html" title=""><i class="ti-settings"></i>account setting</a></li>
-                            <li><a href="logout.html" title=""><i class="ti-power-off"></i>log out</a></li>
-                        </ul>
-                    </div>
-                </div>
+                ${userImg}
                 <span class="ti-settings main-menu" data-ripple=""></span>
             </div>
             <nav>
