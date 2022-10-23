@@ -1,9 +1,7 @@
 package com.codegym.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,6 +12,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@ToString
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

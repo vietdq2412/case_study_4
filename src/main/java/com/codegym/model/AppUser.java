@@ -1,11 +1,16 @@
 package com.codegym.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
 @Table
+@ToString
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

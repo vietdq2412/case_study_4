@@ -2,10 +2,7 @@ package com.codegym.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +13,6 @@ import java.util.List;
 import java.util.Set;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonIgnoreProperties(value = { "roles", "authorities" })
 
 @Entity
 @Table
@@ -25,6 +21,9 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
+@JsonIgnoreProperties({"roles", "authorities", "hibernateLazyInitializer", "handler"})
+
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
