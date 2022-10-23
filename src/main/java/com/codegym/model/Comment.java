@@ -30,6 +30,9 @@ public class Comment {
     @Column(columnDefinition = "DateTime")
     private LocalDateTime time;
 
+    @Column(columnDefinition = "Bigint default 0")
+    private Long likeCount;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Post post;
 

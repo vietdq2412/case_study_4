@@ -22,9 +22,18 @@ public class Post {
 
     @ManyToOne
     private AppUser appUser;
+    @Column(columnDefinition = "LongText")
     private String content;
+
+    @Column(columnDefinition = "DateTime")
     private LocalDateTime time;
+
+    @Column(columnDefinition = "Bigint default 0")
     private int likeCount;
+
+    @Column(columnDefinition = "Bigint default 0")
     private int cmtCount;
+
+    @Column(columnDefinition = "int")
     private int status;
 }
