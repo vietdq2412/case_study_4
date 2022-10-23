@@ -1,7 +1,9 @@
 package com.codegym.controller;
 
 import com.codegym.model.Comment;
+import com.codegym.model.Post;
 import com.codegym.service.commentService.ICommentService;
+import com.codegym.service.postService.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,8 @@ public class CommentController {
 
     @Autowired
     private ICommentService iCommentService;
+    @Autowired
+    private IPostService iPostService;
 
     @GetMapping
     public ResponseEntity<List<Comment>> getAllComment(){
@@ -23,11 +27,6 @@ public class CommentController {
         System.out.println(list);
             return new ResponseEntity<>(list, HttpStatus.OK);
     }
-
-//    @GetMapping
-//    public ResponseEntity<Comment> createComment(@RequestBody Comment comment){
-//
-//    }
 
     @GetMapping("/post/{id}")
     public ResponseEntity<List<Comment>> getCommentByPostId(@PathVariable Long id){
@@ -51,10 +50,16 @@ public class CommentController {
         if(comment == null){
             return new ResponseEntity<>("Comment not found", HttpStatus.NOT_FOUND);
         }
+        Post post = iPostService.findById(comment.getPost().getId());
+        post.setCmtCount(post.getCmtCount()-1);
+        iPostService.save(post);
         return new ResponseEntity<>(iCommentService.delete(id),HttpStatus.OK);
     }
     @PostMapping
-    public ResponseEntity<?> createCommnet(@RequestBody Comment newComment){
+    public ResponseEntity<?> createComment(@RequestBody Comment newComment){
+        Post post = iPostService.findById(newComment.getPost().getId());
+        post.setCmtCount(post.getCmtCount()+1);
+        iPostService.save(post);
         return new ResponseEntity<>(iCommentService.save(newComment), HttpStatus.CREATED);
     }
 }
