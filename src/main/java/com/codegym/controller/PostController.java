@@ -23,11 +23,6 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @GetMapping("/s")
-    public String t(){
-        return "a";
-    }
-
     /* ---------------- GET ALL Post ------------------------ */
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<List<Post>> getAllPost() {
