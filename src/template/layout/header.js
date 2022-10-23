@@ -17,6 +17,9 @@ document.getElementById("header").innerHTML =
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pricing</a>
                     </li>
+                     <li class="nav-item" hidden id = "admin">
+                        <a class="nav-link" href="#">Admin</a>
+                    </li>
                 </ul>
                 <span class="navbar-text">
             Navbar text with an inline element
@@ -24,3 +27,8 @@ document.getElementById("header").innerHTML =
             </div>
         </div>
     </nav>`
+
+let jwt = JSON.parse(window.localStorage.getItem("Authorization"));
+if(jwt.roles[0].name === "admin"){
+    $("#admin").removeAttr("hidden");
+}

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>List</title>
@@ -12,34 +13,133 @@
             crossorigin="anonymous"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <style type="text/css">
+        h3{background-color: blue; color: white; padding: 10px 0 10px 20px;}
+        footer{margin: 10px 0;}
+
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        input[type=text],input[type=email]{
+            width: 100%;
+            padding: 12px 0px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            width: 300px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        #form {
+            width: 500px;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .notify span{font-size: 15px; color: blue;}
+    </style>
 </head>
 <body>
 <div class="row" id="header">
 
 </div>
-<div class="row container">
-    <h1>container</h1>
+<div class="container">
+    <h3>User</h3>
+    <div style="float: right">
+        <form th:action="@{/customer/search}" th:method="post" >
+            <label>Tìm kiếm: </label>
+            <input type="text" style="width: 500px; height: 35px;"/>
+            <button th:type="submit">Search</button>
+        </form>
+
+    </div>
+
+    <table id = "customers">
+        <thead>
+        <tr>
+            <th>UserName</th>
+            <th>FullName</th>
+            <th>Phone</th>
+            <th>DOB</th>
+            <th>Address</th>
+            <th>Description</th>
+            <th>Block</th>
+        </tr>
+        </thead>
+        <tbdy>
+<!--            <tr th:each="row, rowStat: ${customers}">-->
+<!--                <td th:text="${row.getName()}"></td>-->
+<!--                <td th:text="${row.getEmail()}"></td>-->
+<!--                <td th:text="${row.getAddress()}"></td>-->
+<!--                <td>-->
+<!--                    <img th:src="${row.getFileImg().getBytes()}" th:alt="${row.getFileImg().getBytes()}">-->
+<!--                </td>-->
+<!--                <td><a th:href="@{/customer/{id}/edit(id=${row.getId()})}">Edit</a></td>-->
+<!--                <td><a th:href="@{/customer/{id}/delete(id=${row.getId()})}">Delete</a></td>-->
+<!--                <td><a th:href="@{/customer/{id}/view(id=${row.getId()})}">View</a></td>-->
+<!--            </tr>-->
+        </tbdy>
+    </table>
+
 </div>
 <script src="../layout/header.js"></script>
 <script>
-    let user = JSON.parse(window.localStorage.getItem("Authorization")) ;
-    console.log(user.token)
-    $.ajax({
-        type: "GET",
-        headers: {
-            Authorization: "Bearer "+ user.token,
-        },
-
-        url: "http://localhost:8081/rest/users",
-        //xử lý khi thành công
-        success: function (data) {
-            console.log("s",data)
-        },
-        error: function () {
-            alert("err")
-        }
-
-    });
+    // let user = JSON.parse(window.localStorage.getItem("Authorization")) ;
+    // console.log(user.token)
+    // $.ajax({
+    //     type: "GET",
+    //     headers: {
+    //         Authorization: "Bearer "+ user.token,
+    //     },
+    //
+    //     url: "http://localhost:8081/rest/users",
+    //     //xử lý khi thành công
+    //     success: function (data) {
+    //         console.log("s",data)
+    //     },
+    //     error: function () {
+    //         alert("err")
+    //     }
+    //
+    // });
 </script>
 </body>
 </html>
