@@ -19,24 +19,14 @@
     function getAllPost() {
       $.ajax({
         type: "GET",
-        headers: {
-          Authorization: "",
-        },
-        data: JSON.stringify(account),
-        url: "http://localhost:8081/lists",
-        //xử lý khi thành công
+        url: "http://localhost:8081/posts",
         success: function (data) {
-          window.localStorage.setItem("Authorization", JSON.stringify(data));
           console.log(data)
-          $("#message").text("login succes! " + data);
-          $("#error").text("")
-        },
-        error: function (data) {
-          console.log(data)
-          $("#message").text("")
-          $("#error").text("invalid username or password!")
+        }, error: function (error) {
+          console.log(error);
         }
       })};
+
   </script>
 
 </head>
