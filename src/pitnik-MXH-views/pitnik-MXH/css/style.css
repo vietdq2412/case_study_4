@@ -81,6 +81,7 @@ a:active {
     -ms-text-decoration: none;
     -o-text-decoration: none;
     text-decoration: none;
+    cursor: pointer
 }
 
 input:focus,

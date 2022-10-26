@@ -15,13 +15,17 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private long id;
     private String displayName;
     private LocalDate DOB;
     private String address;
+    private String image;
     private String phoneNumber;
     private String aboutMe;
+    private String status;
     @OneToOne
+    @JoinColumn(name = "accountId", unique = true,
+            nullable = false, updatable = false)
     private Account account;
 
     @OneToMany

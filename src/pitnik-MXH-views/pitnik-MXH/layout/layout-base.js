@@ -1340,6 +1340,8 @@ let side_panel = `<div class="side-panel">
 console.log("U", user)
 getLayout();
 function getLayout(){
-    document.getElementById("layout").innerHTML =
+    let layout = document.getElementById("layout");
+    console.log("1, ", layout)
+    layout.innerHTML =
         responsive_header + topbar_stick + fixed_sidebar_right + fixed_sidebar_left + side_panel;
 }
