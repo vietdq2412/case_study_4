@@ -58,19 +58,19 @@ let user_profile_content =
 			<div class="col-lg-10 col-md-9">
 				<ul class="profile-menu">
 					<li>
-						<a class="" onclick="showTimeLine()">Timeline</a>
+						<a class=""  id="profile-menu-timeline" onclick="showTimeLine()">Timeline</a>
 					</li>
 					<li>
-						<a class="" onclick="showAboutPage()">About</a>
+						<a class=""  id="profile-menu-about" onclick="showAboutPage()">About</a>
 					</li>
 					<li>
-						<a class="active" onclick="showTimeLineFriend()">Friends</a>
+						<a class=""  id="profile-menu-friend" onclick="showTimeLineFriend()">Friends</a>
 					</li>
 					<li>
-						<a class="" onclick="showTimeLinePhotos()">Photos</a>
+						<a class id="profile-menu-photo" onclick="showTimeLinePhotos()">Photos</a>
 					</li>
 					<li>
-						<a class="" href="timeline-videos.html">Videos</a>
+						<a class=""  id="profile-menu-video" onclick="showTimeLineVideo()">Videos</a>
 					</li>
 					<li>
 						<div class="more">
@@ -80,7 +80,7 @@ let user_profile_content =
 									<a href="timeline-groups.html">Profile Groups</a>
 								</li>
 								<li>
-									<a onclick="showProfileSettingPage()">Setting</a>
+									<a id="profile-menu-setting" onclick="showProfileSettingPage()">Setting</a>
 								</li>
 							</ul>
 						</div>
