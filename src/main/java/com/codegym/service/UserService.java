@@ -33,7 +33,7 @@ public class UserService {
                 .id(2L).username("sena").password("123456").roles(senaRoles)
                 .build();
 
-        Account accountS = new Account(2L, "viet", "123456", senaRoles);
+
 
         System.out.println(accountSena.getPassword());
         listAccount.add(accountKai);

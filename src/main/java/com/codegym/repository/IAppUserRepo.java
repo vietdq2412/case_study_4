@@ -13,4 +13,6 @@ public interface IAppUserRepo extends JpaRepository<AppUser, Long> {
 //    void blockUser(Long userID);
 //
 //    void followUser(Long userID);
+    AppUser findAppUserByAccount_Id(Long accountId);
+    AppUser existsAppUserByAccount_Id(Long accountId);
 }

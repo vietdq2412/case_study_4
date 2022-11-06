@@ -7,7 +7,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
-import com.codegym.controller.UserRestController;
+import com.codegym.controller.AccountController;
 import com.codegym.service.accountService.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -40,7 +40,8 @@ public class JwtAuthenticationTokenFilter extends UsernamePasswordAuthentication
         if (authToken != null){
             authToken = authToken.replace("Bearer ", "");
         }
-        if (jwtService.validateTokenLogin(authToken) == JwtService.TOKEN_VALID) {
+        int check = jwtService.validateTokenLogin(authToken);
+        if (check == JwtService.TOKEN_VALID) {
             String username = jwtService.getUsernameFromToken(authToken);
             com.codegym.model.Account user = accountService.findByUserName(username);
             String pw = user.getPassword();
@@ -57,8 +58,8 @@ public class JwtAuthenticationTokenFilter extends UsernamePasswordAuthentication
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         }else{
-            UserRestController userRestController = new UserRestController();
-            userRestController.logout();
+            AccountController accountController = new AccountController();
+            accountController.logout(check);
         }
         chain.doFilter(request, response);
     }

@@ -1,3 +1,14 @@
+
+
+if (user.status == 0) {
+    showProfileSettingPage();
+} else {
+    showAboutPage()
+}
+
+
+
+
 function showTimeLine() {
     document.getElementById("page-contents").innerHTML = timeline_page_content;
     let ele = document.getElementById("profile-menu-timeline")

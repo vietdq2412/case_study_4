@@ -37,6 +37,11 @@ public class AppUserService implements IAppUserService{
     }
 
     @Override
+    public AppUser findByAccount(Long id) {
+        return appUserRepo.findAppUserByAccount_Id(id);
+    }
+
+    @Override
     public void addFriend(Long currentUserId, Long targetID) {
         appUserRepo.addFriend(currentUserId, targetID);
     }

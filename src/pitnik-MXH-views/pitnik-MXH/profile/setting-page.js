@@ -33,7 +33,7 @@ let profile_setting_page_content = user_profile_content +
 					</li>
 				</ul>
 				<div class="tab-content">
-					<div class="tab-pane fade show active" id="gen-setting" >
+					<div class="tab-pane fade" id="gen-setting" >
 						<div class="set-title">
 							<h5>General Setting</h5>
 							<span>Set your login preference, help us personalize your experience and make big account change here.</span>
@@ -95,7 +95,7 @@ let profile_setting_page_content = user_profile_content +
 							</div>
 						</div>
 					</div><!-- general setting -->
-					<div class="tab-pane fade" id="edit-profile" >
+					<div class="tab-pane fade show active" id="edit-profile" >
 						<div class="set-title">
 							<h5>Edit Profile</h5>
 							<span>People on Pitnik will get to know you with the info below</span>

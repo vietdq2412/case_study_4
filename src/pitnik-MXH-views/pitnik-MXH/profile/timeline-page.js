@@ -1649,4 +1649,3 @@ let timeline_page_content =
 </div><!-- sidebar -->`
 
 
-document.getElementById("page-contents").innerHTML = timeline_page_content;

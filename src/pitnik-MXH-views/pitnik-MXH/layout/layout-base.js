@@ -1,11 +1,40 @@
-let user = window.localStorage.getItem("Authorization");
-user = JSON.parse(user);
+let account = window.localStorage.getItem("Authorization");
+account = JSON.parse(account);
+
+if (account == null){
+        window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/login.html"
+    }
+
+let loginUser = getUserInformationAPI(account.userId);
+console.log(loginUser)
 
 let username = ""
-if (user != "" && user != null){
-    username = user.username;
-}
 
+function getUserInformationAPI(userID){
+    $.ajax({
+        type: "Get",
+        headers: {
+            Authorization: "",
+        },
+        contentType: 'application/json; charset=utf-8',
+        url: "http://localhost:8081/user/" + userID,
+        //xử lý khi thành công
+        success: function (data) {
+            console.log("get user by id API", data)
+            window.localStorage.setItem("User", JSON.stringify(data));
+            return data;
+            // if (data.status == 0){
+            //     window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/newsfeed.html"
+            // } else {
+            //     window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/profile.html"
+            // }
+        },
+        error: function (data) {
+            console.log(data)
+        }
+    });
+    return null;
+}
 let userImg = `<div class="user-img">
                     <h5>${username}</h5>
                     <img src="images/resources/admin.jpg" alt="">
@@ -19,8 +48,7 @@ let userImg = `<div class="user-img">
                         </ul>
                         <span class="seting-title">User setting <a href="#" title="">see all</a></span>
                         <ul class="log-out">
-                            <li><a onclick="showAboutPage()" title=""><i class="ti-user"></i> view profile</a></li>
-                            <li><a onclick="showProfileSettingPage()" title=""><i class="ti-pencil-alt"></i>edit profile</a></li>
+                            <li><a href="/case4/src/pitnik-MXH-views/pitnik-MXH/profile.html" title=""><i class="ti-user"></i> view profile</a></li>
                             <li><a href="#" title=""><i class="ti-target"></i>activity log</a></li>
                             <li><a href="setting.html" title=""><i class="ti-settings"></i>account setting</a></li>
                             <li><a href="logout.html" title=""><i class="ti-power-off"></i>log out</a></li>
@@ -1336,8 +1364,6 @@ let side_panel = `<div class="side-panel">
         </div><!-- side panel -->`
 
 
-
-console.log("U", user)
 getLayout();
 function getLayout(){
     let layout = document.getElementById("layout");

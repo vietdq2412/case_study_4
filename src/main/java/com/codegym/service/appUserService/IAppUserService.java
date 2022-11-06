@@ -10,4 +10,8 @@ public interface IAppUserService extends IGeneralService<AppUser> {
     void blockUser(Long currentUserId, Long userID);
 
     void followUser(Long currentUserId, Long userID);
+
+     AppUser findByAccount(Long id);
+
+
 }

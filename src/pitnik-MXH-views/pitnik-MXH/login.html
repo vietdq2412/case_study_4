@@ -77,6 +77,8 @@
                                     <i class="fa fa-key"></i>login
                                     <span>sign in now and meet the awesome Friends around the world.</span>
                                 </div>
+                                <h6 style="color:#be6b6b; font-size: small" id="error"></h6>
+                                <h6 style="color:#be6b6b; font-size: small" id="message"></h6>
                                 <form class="we-form" method="post">
                                     <input type="text" placeholder="Username" id="username">
                                     <input type="password" placeholder="Password" id="password">
@@ -88,7 +90,7 @@
                                 <a class="with-smedia twitter" href="#" title="" data-ripple=""><i class="fa fa-twitter"></i></a>
 								<a class="with-smedia instagram" href="#" title="" data-ripple=""><i class="fa fa-instagram"></i></a>
 								<a class="with-smedia google" href="#" title="" data-ripple=""><i class="fa fa-google-plus"></i></a>
-                                <span>don't have an account? <a class="we-account underline" href="#" title="">register now</a></span>
+                                <span>don't have an account? <a class="we-account underline" href="/case4/src/pitnik-MXH-views/pitnik-MXH/register.html" title="">register now</a></span>
                             </div>
                         </div>
                         
@@ -115,16 +117,20 @@
             },
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(account),
-            url: "http://localhost:8081/rest/login",
+            url: "http://localhost:8081/account/login",
             //xử lý khi thành công
             success: function (data) {
                 window.localStorage.setItem("Authorization", JSON.stringify(data));
                 console.log(data)
-                $("#message").text("login succes! " + data);
+                $("#message").text("login succes! " + data.username);
                 $("#error").text("")
-                window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/newsfeed.html"
+                if (data.status == 0){
+                    window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/newsfeed.html"
+                } else {
+                    window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/profile.html"
+                }
             },
-            error: function (data) {4
+            error: function (data) {
                 console.log(data)
                 $("#message").text("")
                 $("#error").text("invalid username or password!")

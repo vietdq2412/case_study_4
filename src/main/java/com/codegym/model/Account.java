@@ -29,13 +29,12 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private long id;
-
-    @Column(unique=true)
+    @Column(length = 50, unique = true)
+    private String email;
+    @Column(unique=true, length = 50)
     private String username;
     private String password;
 
-    @OneToMany
+    @ManyToMany
     private Set<Role> roles;
-
-
 }
