@@ -49,6 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
         auth.inMemoryAuthentication()
                 .withUser("kai").password("{noop}12345").roles("ADMIN")
                 .and()
@@ -60,10 +61,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().ignoringAntMatchers("/**");
         http.httpBasic().authenticationEntryPoint(restServicesEntryPoint());
         http.authorizeRequests()
-                .antMatchers("/**", "/rest/login").permitAll()
-                .antMatchers(HttpMethod.GET,"/rest/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers(HttpMethod.POST,"/rest/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE,"/rest/**").hasRole("ADMIN")
+                .antMatchers("/**", "/account/login", "/account/register").permitAll()
+                .antMatchers(HttpMethod.GET,"/account/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.POST,"/account/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/account/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET,"/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().csrf().disable();
