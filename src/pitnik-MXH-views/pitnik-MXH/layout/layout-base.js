@@ -5,10 +5,13 @@ if (account == null){
         window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/login.html"
     }
 
-let loginUser = getUserInformationAPI(account.userId);
-console.log(loginUser)
+console.log("account", account);
+getUserInformationAPI(account.userId);
+let loginUser = window.localStorage.getItem("User");
+loginUser = JSON.parse(loginUser);
+console.log("uid: ",loginUser)
 
-let username = ""
+let username = account.username
 
 function getUserInformationAPI(userID){
     $.ajax({
@@ -37,7 +40,7 @@ function getUserInformationAPI(userID){
 }
 let userImg = `<div class="user-img">
                     <h5>${username}</h5>
-                    <img src="images/resources/admin.jpg" alt="">
+                    <img src="https://meonhapkhau.com/wp-content/uploads/2022/05/Su-that-thu-vi-o-mat-meo-5.png" width="45" height="45" alt="">
                     <span class="status f-online"></span>
                     <div class="user-setting">
                         <span class="seting-title">Chat setting <a href="#" title="">see all</a></span>
@@ -55,14 +58,7 @@ let userImg = `<div class="user-img">
                         </ul>
                     </div>
                 </div>`;
-if (username==null || username == ""){
-    userImg = `<div class="user-img"><a href="/case4/src/pitnik-MXH-views/pitnik-MXH/login.html" title=""><i class="ti-power-off"></i> log in</a></div>`;
-}
-// if (user == null || user == ""){
-//     alert(1)
-//     window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/login.html"
-// }else {
-// }
+
 
 let responsive_header = `<div id="responsive-header" class="responsive-header">
             <div class="mh-head first Sticky">
