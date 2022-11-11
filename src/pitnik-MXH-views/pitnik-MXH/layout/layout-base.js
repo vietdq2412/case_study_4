@@ -1,14 +1,46 @@
-let user = window.localStorage.getItem("Authorization");
-user = JSON.parse(user);
+let account = window.localStorage.getItem("Authorization");
+account = JSON.parse(account);
 
-let username = ""
-if (user != "" && user != null){
-    username = user.username;
+if (account == null){
+        window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/login.html"
+    }
+
+console.log("account", account);
+getUserInformationAPI(account.userId);
+let loginUser = window.localStorage.getItem("User");
+loginUser = JSON.parse(loginUser);
+console.log("uid: ",loginUser)
+
+let username = account.username
+
+function getUserInformationAPI(userID){
+    $.ajax({
+        type: "Get",
+        headers: {
+            Authorization: "",
+        },
+        contentType: 'application/json; charset=utf-8',
+        url: "http://localhost:8081/user/" + userID,
+        //xử lý khi thành công
+        success: function (data) {
+            console.log("get user by id API", data)
+            window.localStorage.setItem("User", JSON.stringify(data));
+            return data;
+            // if (data.status == 0){
+            //     window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/newsfeed.html"
+            // } else {
+            //     window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/profile.html"
+            // }
+        },
+        error: function (data) {
+            console.log(data)
+        }
+    });
+    return null;
 }
-
 let userImg = `<div class="user-img">
                     <h5>${username}</h5>
-                    <img src="images/resources/admin.jpg" alt="">
+                    <img src="https://meonhapkhau.com/wp-content/uploads/2022/05/Su-that-thu-vi-o-mat-meo-5.png" width="45" height="45" alt="">
                     <span class="status f-online"></span>
                     <div class="user-setting">
                         <span class="seting-title">Chat setting <a href="#" title="">see all</a></span>
@@ -19,22 +51,14 @@ let userImg = `<div class="user-img">
                         </ul>
                         <span class="seting-title">User setting <a href="#" title="">see all</a></span>
                         <ul class="log-out">
-                            <li><a href="about.html" title=""><i class="ti-user"></i> view profile</a></li>
-                            <li><a href="setting.html" title=""><i class="ti-pencil-alt"></i>edit profile</a></li>
+                            <li><a href="/case4/src/pitnik-MXH-views/pitnik-MXH/profile.html" title=""><i class="ti-user"></i> view profile</a></li>
                             <li><a href="#" title=""><i class="ti-target"></i>activity log</a></li>
                             <li><a href="setting.html" title=""><i class="ti-settings"></i>account setting</a></li>
                             <li><a href="logout.html" title=""><i class="ti-power-off"></i>log out</a></li>
                         </ul>
                     </div>
                 </div>`;
-if (username==null || username == ""){
-    userImg = `<div class="user-img"><a href="/case4/src/pitnik-MXH-views/pitnik-MXH/login.html" title=""><i class="ti-power-off"></i> log in</a></div>`;
-}
-// if (user == null || user == ""){
-//     alert(1)
-//     window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/login.html"
-// }else {
-// }
+
 
 let responsive_header = `<div id="responsive-header" class="responsive-header">
             <div class="mh-head first Sticky">
@@ -1336,10 +1360,10 @@ let side_panel = `<div class="side-panel">
         </div><!-- side panel -->`
 
 
-
-console.log("U", user)
 getLayout();
 function getLayout(){
-    document.getElementById("layout").innerHTML =
+    let layout = document.getElementById("layout");
+    console.log("1, ", layout)
+    layout.innerHTML =
         responsive_header + topbar_stick + fixed_sidebar_right + fixed_sidebar_left + side_panel;
 }

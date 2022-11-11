@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <title>Pitnik Social Network Toolkit</title>
+    <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
+
+    <link rel="stylesheet" href="css/main.min.css">
+    <link rel="stylesheet" href="css/nprogress.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/color.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<style>
+    .profile-menu > li > a.active::after {
+        border-bottom: 10px solid #fa6342;;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        bottom: 0;
+        content: "";
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%);
+    }
+</style>
+<body>
+<div class="wavy-wraper">
+    <div class="wavy">
+        <span style="--i:1;">p</span>
+        <span style="--i:2;">i</span>
+        <span style="--i:3;">t</span>
+        <span style="--i:4;">n</span>
+        <span style="--i:5;">i</span>
+        <span style="--i:6;">k</span>
+        <span style="--i:7;">.</span>
+        <span style="--i:8;">.</span>
+        <span style="--i:9;">.</span>
+    </div>
+</div>
+<div class="theme-layout">
+
+    <div class="postoverlay"></div>
+
+    <div id="layout"></div>
+
+    <section>
+        <div class="gap2 gray-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row merged20" id="page-contents">
+                            <div class="row">
+                                <div class="user-profile">
+                                    <figure>
+                                        <div class="edit-pp">
+                                            <label class="fileContainer">
+                                                <i class="fa fa-camera"></i>
+                                                <input type="file">
+                                            </label>
+                                        </div>
+                                        <img src="images/resources/profile-image.jpg" alt="">
+                                        <ul class="profile-controls">
+                                            <li><a href="#" title="Add friend" data-toggle="tooltip"><i
+                                                    class="fa fa-user-plus"></i></a></li>
+                                            <li><a href="#" title="Follow" data-toggle="tooltip"><i
+                                                    class="fa fa-star"></i></a></li>
+                                            <li><a class="send-mesg" href="#" title="Send Message"
+                                                   data-toggle="tooltip"><i class="fa fa-comment"></i></a></li>
+                                            <li>
+                                                <div class="edit-seting" title="Edit Profile image"><i
+                                                        class="fa fa-sliders"></i>
+                                                    <ul class="more-dropdown">
+                                                        <li><a href="setting.html" title="">Update Profile Photo</a>
+                                                        </li>
+                                                        <li><a href="setting.html" title="">Update Header Photo</a></li>
+                                                        <li><a href="setting.html" title="">Account Settings</a></li>
+                                                        <li><a href="support-and-help.html" title="">Find Support</a>
+                                                        </li>
+                                                        <li><a class="bad-report" href="#" title="">Report Profile</a>
+                                                        </li>
+                                                        <li><a href="#" title="">Block Profile</a></li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <ol class="pit-rate">
+                                            <li class="rated"><i class="fa fa-star"></i></li>
+                                            <li class="rated"><i class="fa fa-star"></i></li>
+                                            <li class="rated"><i class="fa fa-star"></i></li>
+                                            <li class="rated"><i class="fa fa-star"></i></li>
+                                            <li class=""><i class="fa fa-star"></i></li>
+                                            <li><span>4.7/5</span></li>
+                                        </ol>
+                                    </figure>
+
+                                    <div class="profile-section">
+                                        <div class="row">
+                                            <div class="col-lg-2 col-md-3">
+                                                <div class="profile-author">
+                                                    <div class="profile-author-thumb">
+                                                        <img alt="author" src="images/resources/author.jpg">
+                                                        <div class="edit-dp">
+                                                            <label class="fileContainer">
+                                                                <i class="fa fa-camera"></i>
+                                                                <input type="file">
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="author-content">
+                                                        <a class="h4 author-name" href="unused/about.html">Jack
+                                                            Carter</a>
+                                                        <div class="country">Ontario, CA</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-10 col-md-9">
+                                                <ul class="profile-menu">
+                                                    <li>
+                                                        <a class="active" href="unused/timeline.html">Timeline</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="" href="unused/about.html">About</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="" href="unused/timeline-friends.html">Friends</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="" href="unused/timeline-photos.html">Photos</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="" href="timeline-videos.html">Videos</a>
+                                                    </li>
+                                                    <li>
+                                                        <div class="more">
+                                                            <i class="fa fa-ellipsis-h"></i>
+                                                            <ul class="more-dropdown">
+                                                                <li>
+                                                                    <a href="timeline-groups.html">Profile Groups</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="statistics.html">Profile Analytics</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <ol class="folw-detail">
+                                                    <li><span>Posts</span>
+                                                        <ins>101</ins>
+                                                    </li>
+                                                    <li><span>Followers</span>
+                                                        <ins>1.3K</ins>
+                                                    </li>
+                                                    <li><span>Following</span>
+                                                        <ins>22</ins>
+                                                    </li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- user profile banner  -->
+                            </div>
+                            <div class="row" id="profile-content">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- content -->
+
+    <a title="Your Cart Items" href="shop-cart.html" class="shopping-cart" data-toggle="tooltip">Cart <i
+            class="fa fa-shopping-bag"></i><span>02</span></a>
+
+    <div class="bottombar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="copyright">© Pitnik 2020. All rights reserved.</span>
+                    <i><img src="images/credit-cards.png" alt=""></i>
+                </div>
+            </div>
+        </div>
+    </div><!-- bottom bar -->
+</div>
+<div class="popup-wraper2">
+    <div class="popup post-sharing">
+        <span class="popup-closed"><i class="ti-close"></i></span>
+        <div class="popup-meta">
+            <div class="popup-head">
+                <select data-placeholder="Share to friends..." multiple class="chosen-select multi">
+                    <option>Share in your feed</option>
+                    <option>Share in friend feed</option>
+                    <option>Share in a page</option>
+                    <option>Share in a group</option>
+                    <option>Share in message</option>
+                </select>
+                <div class="post-status">
+                    <span><i class="fa fa-globe"></i></span>
+                    <ul>
+                        <li><a href="#" title=""><i class="fa fa-globe"></i> Post Globaly</a></li>
+                        <li><a href="#" title=""><i class="fa fa-user"></i> Post Private</a></li>
+                        <li><a href="#" title=""><i class="fa fa-user-plus"></i> Post Friends</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="postbox">
+                <div class="post-comt-box">
+                    <form method="post">
+                        <input type="text" placeholder="Search Friends, Pages, Groups, etc....">
+                        <textarea placeholder="Say something about this..."></textarea>
+                        <div class="add-smiles">
+                            <span title="add icon" class="em em-expressionless"></span>
+                            <div class="smiles-bunch">
+                                <i class="em em---1"></i>
+                                <i class="em em-smiley"></i>
+                                <i class="em em-anguished"></i>
+                                <i class="em em-laughing"></i>
+                                <i class="em em-angry"></i>
+                                <i class="em em-astonished"></i>
+                                <i class="em em-blush"></i>
+                                <i class="em em-disappointed"></i>
+                                <i class="em em-worried"></i>
+                                <i class="em em-kissing_heart"></i>
+                                <i class="em em-rage"></i>
+                                <i class="em em-stuck_out_tongue"></i>
+                            </div>
+                        </div>
+
+                        <button type="submit"></button>
+                    </form>
+                </div>
+                <figure><img src="images/resources/share-post.jpg" alt=""></figure>
+                <div class="friend-info">
+                    <figure>
+                        <img alt="" src="images/resources/admin.jpg">
+                    </figure>
+                    <div class="friend-name">
+                        <ins><a title="" href="time-line.html">Jack Carter</a> share <a title="" href="#">link</a></ins>
+                        <span>Yesterday with @Jack Piller and @Emily Stone at the concert of # Rock'n'Rolla in Ontario.</span>
+                    </div>
+                </div>
+                <div class="share-to-other">
+                    <span>Share to other socials</span>
+                    <ul>
+                        <li><a class="facebook-color" href="#" title=""><i class="fa fa-facebook-square"></i></a></li>
+                        <li><a class="twitter-color" href="#" title=""><i class="fa fa-twitter-square"></i></a></li>
+                        <li><a class="dribble-color" href="#" title=""><i class="fa fa-dribbble"></i></a></li>
+                        <li><a class="instagram-color" href="#" title=""><i class="fa fa-instagram"></i></a></li>
+                        <li><a class="pinterest-color" href="#" title=""><i class="fa fa-pinterest-square"></i></a></li>
+                    </ul>
+                </div>
+                <div class="copy-email">
+                    <span>Copy & Email</span>
+                    <ul>
+                        <li><a href="#" title="Copy Post Link"><i class="fa fa-link"></i></a></li>
+                        <li><a href="#" title="Email this Post"><i class="fa fa-envelope"></i></a></li>
+                    </ul>
+                </div>
+                <div class="we-video-info">
+                    <ul>
+                        <li>
+								<span title="" data-toggle="tooltip" class="views" data-original-title="views">
+									<i class="fa fa-eye"></i>
+									<ins>1.2k</ins>
+								</span>
+                        </li>
+                        <li>
+								<span title="" data-toggle="tooltip" class="views" data-original-title="views">
+									<i class="fa fa-share-alt"></i>
+									<ins>20k</ins>
+								</span>
+                        </li>
+                    </ul>
+                    <button class="main-btn color" data-ripple="">Submit</button>
+                    <button class="main-btn cancel" data-ripple="">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- share popup -->
+
+<div class="popup-wraper3">
+    <div class="popup">
+        <span class="popup-closed"><i class="ti-close"></i></span>
+        <div class="popup-meta">
+            <div class="popup-head">
+                <h5>Report Post</h5>
+            </div>
+            <div class="Rpt-meta">
+                <span>We're sorry something's wrong. How can we help?</span>
+                <form method="post" class="c-form">
+                    <div class="form-radio">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="radio" checked="checked"><i class="check-box"></i>It's spam or
+                                abuse
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="radio"><i class="check-box"></i>It breaks r/technology's rules
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="radio"><i class="check-box"></i>Not Related
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="radio"><i class="check-box"></i>Other issues
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Write about Report</label>
+                        <textarea placeholder="write someting about Post" rows="2"></textarea>
+                    </div>
+                    <div>
+                        <button data-ripple="" type="submit" class="main-btn">Submit</button>
+                        <a href="#" data-ripple="" class="main-btn3 cancel">Close</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div><!-- report popup -->
+
+<div class="popup-wraper1">
+    <div class="popup direct-mesg">
+        <span class="popup-closed"><i class="ti-close"></i></span>
+        <div class="popup-meta">
+            <div class="popup-head">
+                <h5>Send Message</h5>
+            </div>
+            <div class="send-message">
+                <form method="post" class="c-form">
+                    <input type="text" placeholder="Sophia">
+                    <textarea placeholder="Write Message"></textarea>
+                    <button type="submit" class="main-btn">Send</button>
+                </form>
+                <div class="add-smiles">
+                    <div class="uploadimage">
+                        <i class="fa fa-image"></i>
+                        <label class="fileContainer">
+                            <input type="file">
+                        </label>
+                    </div>
+                    <span title="add icon" class="em em-expressionless"></span>
+                    <div class="smiles-bunch">
+                        <i class="em em---1"></i>
+                        <i class="em em-smiley"></i>
+                        <i class="em em-anguished"></i>
+                        <i class="em em-laughing"></i>
+                        <i class="em em-angry"></i>
+                        <i class="em em-astonished"></i>
+                        <i class="em em-blush"></i>
+                        <i class="em em-disappointed"></i>
+                        <i class="em em-worried"></i>
+                        <i class="em em-kissing_heart"></i>
+                        <i class="em em-rage"></i>
+                        <i class="em em-stuck_out_tongue"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div><!-- send message popup -->
+
+<div class="popup-wraper3">
+    <div class="popup">
+        <span class="popup-closed"><i class="ti-close"></i></span>
+        <div class="popup-meta">
+            <div class="popup-head">
+                <h5>Report Post</h5>
+            </div>
+            <div class="Rpt-meta">
+                <span>We're sorry something's wrong. How can we help?</span>
+                <form method="post" class="c-form">
+                    <div class="form-radio">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="radio" checked="checked"><i class="check-box"></i>It's spam or
+                                abuse
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="radio"><i class="check-box"></i>It breaks r/technology's rules
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="radio"><i class="check-box"></i>Not Related
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="radio"><i class="check-box"></i>Other issues
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Write about Report</label>
+                        <textarea placeholder="write someting about Post" rows="2"></textarea>
+                    </div>
+                    <div>
+                        <button data-ripple="" type="submit" class="main-btn">Submit</button>
+                        <a href="#" data-ripple="" class="main-btn3 cancel">Close</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div><!-- report popup -->
+
+<script src="layout/layout-base.js"></script>
+<script src="profile/user-profile-section.js"></script>
+<script src="profile/timeline-page.js"></script>
+<script src="profile/timeline-friends-page.js"></script>
+<script src="profile/timeline-photos-page.js"></script>
+<script src="profile/about-page.js"></script>
+<script src="profile/setting-page.js"></script>
+<script src="profile/profile.js"></script>
+
+<script src="js/main.min.js"></script>
+<script src="js/script.js"></script>
+<script>
+
+</script>
+
+</body>
+
+</html>

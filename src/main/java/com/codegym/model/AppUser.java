@@ -1,7 +1,7 @@
 package com.codegym.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,18 +10,29 @@ import java.util.Set;
 @Entity
 @Table
 @ToString
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private long id;
     private String displayName;
     private LocalDate DOB;
     private String address;
+    private String image;
+
+    @Column(nullable = false, length = 50, unique = true)
+    private String email;
     private String phoneNumber;
     private String aboutMe;
+    private String status;
     @OneToOne
+    @JoinColumn(name = "accountId", unique = true,
+            nullable = false, updatable = false)
     private Account account;
 
     @OneToMany
