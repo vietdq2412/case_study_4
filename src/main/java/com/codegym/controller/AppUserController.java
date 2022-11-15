@@ -16,6 +16,12 @@ public class AppUserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<AppUser> getById(@PathVariable Long id){
-        return new ResponseEntity<>(appUserService.findById(id), HttpStatus.OK);
+        AppUser appUser = appUserService.findById(id);
+        return new ResponseEntity<>(appUser, HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Boolean> save(@RequestBody AppUser appUser){
+        return new ResponseEntity<>(appUserService.save(appUser), HttpStatus.OK);
     }
 }

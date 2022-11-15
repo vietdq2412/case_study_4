@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AppUserService implements IAppUserService{
@@ -33,7 +34,8 @@ public class AppUserService implements IAppUserService{
 
     @Override
     public AppUser findById(Long id) {
-        return appUserRepo.findById(id).get();
+        Optional<AppUser> appUserOptional = appUserRepo.findById(id);
+        return appUserOptional.orElse(null);
     }
 
     @Override

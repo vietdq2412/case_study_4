@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -58,7 +59,9 @@ boolean check = accountRepo.existsAccountByUsernameOrEmail(account.getUsername()
 
     @Override
     public Account findById(Long id) {
-        return accountRepo.findById(id).get();
+        Optional<Account> account = accountRepo.findById(id);
+        boolean c = account.isPresent();
+        return account.get();
     }
 
     public Account findByUserName(String username) {

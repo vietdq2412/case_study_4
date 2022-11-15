@@ -1,13 +1,12 @@
 
 
-if (user.status == 0) {
-    showProfileSettingPage();
+
+if (loginUser.status == 0) {
+    profileEditSettingId = "profileEditSetting"
+    showProfileSettingPage(profileEditSettingId);
 } else {
     showAboutPage()
 }
-
-
-
 
 function showTimeLine() {
     document.getElementById("page-contents").innerHTML = timeline_page_content;
@@ -41,25 +40,28 @@ function showTimeLine() {
 }
 
 function showAboutPage() {
-    document.getElementById("page-contents").innerHTML = about_page_content;
+    document.getElementById(PROFILE_PAGE_CONTENT_ID).innerHTML = about_page_content;
     let ele = document.getElementById("profile-menu-about")
     ele.className = "active";
 }
 
 function showTimeLineFriend() {
-    document.getElementById("page-contents").innerHTML = timeline_friend_page_content;
+    document.getElementById(PROFILE_PAGE_CONTENT_ID).innerHTML = timeline_friend_page_content;
     let ele = document.getElementById("profile-menu-friend")
     ele.className = "active";
 }
 
 function showTimeLinePhotos() {
-    document.getElementById("page-contents").innerHTML = timeline_photo_page_content;
+    document.getElementById(PROFILE_PAGE_CONTENT_ID).innerHTML = timeline_photo_page_content;
     let ele = document.getElementById("profile-menu-photo")
     ele.className = "active";
 }
 
-function showProfileSettingPage() {
-    document.getElementById("page-contents").innerHTML = profile_setting_page_content;
+function showProfileSettingPage(id) {
+    document.getElementById(PROFILE_PAGE_CONTENT_ID).innerHTML = profile_setting_page_content;
+    document.getElementById(id).className += " active"
     let ele = document.getElementById("profile-menu-setting")
     ele.className = "active";
+    let dob = document.getElementById("dob")
+    dob.max =   new Date().toISOString().split("T")[0];
 }

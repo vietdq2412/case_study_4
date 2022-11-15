@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @CrossOrigin("*")
 @RequestMapping("/likes")
-public class LikeController {
+public class  LikeController {
     @Autowired
     private ILikeService iLikeService;
     @Autowired

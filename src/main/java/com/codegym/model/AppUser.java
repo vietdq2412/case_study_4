@@ -20,6 +20,7 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private long id;
+    @Column(nullable = false, length = 50, unique = true)
     private String displayName;
     private LocalDate DOB;
     private String address;

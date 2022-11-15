@@ -1,14 +1,16 @@
-let profile_setting_page_content = user_profile_content +
-    `<div class="col-lg-9">
+
+let mailPattern = "[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}";
+let phonePattern = "[0-9]{10,11}"
+let profile_setting_page_content = user_profile_content + `<div class="col-lg-9">
 	<div class="central-meta">
 		<div class="about">
 			<div class="d-flex flex-row mt-2">
 				<ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left" >
 					<li class="nav-item">
-						<a href="#gen-setting" class="nav-link active" data-toggle="tab" ><i class="fa fa-gear"></i> General Setting</a>
+						<a href="#gen-setting" class="nav-link" id="generalSetting" data-toggle="tab" ><i class="fa fa-gear"></i> General Setting</a>
 					</li>
 					<li class="nav-item">
-						<a href="#edit-profile" class="nav-link" data-toggle="tab" ><i class="fa fa-pencil"></i> Edit Profile</a>
+						<a href="#edit-profile" class="nav-link" id="profileEditSetting" data-toggle="tab" ><i class="fa fa-pencil"></i> Edit Profile</a>
 					</li>
 					<li class="nav-item">
 						<a href="#notifi" class="nav-link" data-toggle="tab" ><i class="fa fa-bell"></i> Notification</a>
@@ -102,66 +104,71 @@ let profile_setting_page_content = user_profile_content +
 						</div>
 						<div class="setting-meta">
 							<div class="change-photo">
-								<figure><img src="images/resources/admin2.jpg" alt=""></figure>
+								<figure><img id="img-out" alt="" width="250" height="250"></figure>
 								<div class="edit-img">
 									<form class="edit-phto">
 
 										<label class="fileContainer">
 											<i class="fa fa-camera-retro"></i>
 											Chage DP
-											<input type="file">
+											<input id="image" type="file" onchange="loadFile(event)">
 										</label>
-									</form>
+									</form>						
 								</div>
 							</div>
 						</div>
 						<div class="stg-form-area">
-							<form method="post" class="c-form">
+							<form method="post" class="c-form" onsubmit="saveInfo()">
 								<div>
-									<label>Display Name</label>
-									<input type="text" placeholder="Jack Carter">
-								</div>
-
-								<div class="uzer-nam">
-									<label>User Name</label>
-									<span>www.pitnik.com/</span><input type="text" placeholder="jackcarter4023">
+									<label>Display Name *</label>
+									<input id="display-name" type="text" placeholder="Display name" required>
 								</div>
 								<div>
-									<label>Email Address</label>
-									<input type="text" placeholder="abc@pitnikmail.com">
+									<label>Email Address *</label>
+									<input id="email" type="text" placeholder="abc@pitnikmail.com" 
+									pattern="${mailPattern}"
+                                    required>
+								</div>
+								<div>
+									<label>Phone number</label>
+									<input id="phone" type="text" pattern="${phonePattern}" placeholder="">
 								</div>
 								<div>
 									<label>Gender</label>
 									<div class="form-radio">
 										<div class="radio">
 											<label>
-												<input type="radio" checked="checked" name="radio"><i class="check-box"></i>Male
+												<input type="radio" id="male" checked="checked" name="radio"><i class="check-box"></i>Male
 											</label>
 										</div>
 										<div class="radio">
 											<label>
-												<input type="radio" name="radio"><i class="check-box"></i>Female
+												<input type="radio" id="female" name="radio"><i class="check-box"></i>Female
 											</label>
 										</div>
 										<div class="radio">
 											<label>
-												<input type="radio" name="radio"><i class="check-box"></i>Custom
+												<input type="radio" id="custom" name="radio"><i class="check-box"></i>Custom
 											</label>
 										</div>
 									</div>
 								</div>
 								<div>
+									<label>Date of birth</label>
+									<input id="dob" type="date">
+								</div>
+								<div>
 									<label>about your profile</label>
-									<textarea rows="3" placeholder="write someting about yourself"></textarea>
+									<textarea id="about" rows="3" placeholder="write someting about yourself"></textarea>
 								</div>
 
 								<div>
 									<label>Location</label>
-									<input type="text" placeholder="Ex.San Francisco, CA">
+									<input id="address" type="text" placeholder="Ex.San Francisco, CA">
 								</div>
 								<div>
 									<label>Country</label>
-									<select>
+									<select id="country">
 										<option value="country">Country</option>
 										<option value="AFG">Afghanistan</option>
 										<option value="ALA">Ƭand Islands</option>
@@ -416,7 +423,7 @@ let profile_setting_page_content = user_profile_content +
 								</div>
 								<div>
 									<button type="submit" data-ripple="">Cancel</button>
-									<button type="submit" data-ripple="">Save</button>
+									<button type="submit" >Save</button>
 								</div>
 							</form>
 						</div>
@@ -689,6 +696,7 @@ let profile_setting_page_content = user_profile_content +
 		</div>
 	</div>
 </div><!-- centerl meta -->
+
 <div class="col-lg-3">
 	<aside class="sidebar static">
 		<div class="widget">
@@ -769,3 +777,68 @@ let profile_setting_page_content = user_profile_content +
 		</div>
 	</aside>
 </div><!-- sidebar -->`
+
+let img;
+
+function loadFile(event) {
+    let date = new Date();
+    let milliseconds = date.getTime();
+    let output = document.getElementById('img-out');
+    img = milliseconds + "-" + event.target.files[0].name
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function () {
+        URL.revokeObjectURL(output.src) // free memory
+    }
+};
+
+function saveInfo() {
+    let male = document.getElementById("male").checked;
+    let female = document.getElementById("female").checked;
+    let custom = document.getElementById("custom").checked;
+    let gender;
+
+    if (male) gender = "male";
+    if (female) gender = "female";
+    if (custom) gender = "custom";
+
+    let userInfomation = {
+        id: loginUser.id,
+        displayName: $("#display-name").val(),
+        email: $("#email").val(),
+        DOB: $("#dob").val(),
+        phoneNumber: $("#phone").val(),
+        gender: gender,
+        aboutMe: $("#about").val(),
+        address: $("#country").val(),
+        image: img,
+    }
+
+    console.log("d", userInfomation)
+    $.ajax({
+        type: "put",
+        headers: {
+            Authorization: "",
+        },
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(userInfomation),
+        url: "http://localhost:8081/user/"+loginUser.id, //xử lý khi thành công
+        success: function (data) {
+
+            console.log(data)
+            $("#message").text("login succes! " + data.username);
+            $("#error").text("")
+            if (data.status == 0) {
+                window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/newsfeed.html"
+            } else {
+                window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/profile.html"
+            }
+        },
+        error: function (data) {
+            console.log(data)
+            $("#message").text("")
+            $("#error").text("invalid username or password!")
+        }
+    });
+    event.preventDefault();
+    //chặn sự kiện mặc định của thẻ
+}
