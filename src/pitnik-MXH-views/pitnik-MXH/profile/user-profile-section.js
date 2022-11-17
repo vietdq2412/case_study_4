@@ -1,3 +1,5 @@
+
+
 let user_profile_content =
     `<div class="user-profile">
 	<figure>
@@ -7,7 +9,8 @@ let user_profile_content =
 				<input type="file">
 			</label>
 		</div>
-		<img src="images/resources/profile-image.jpg" alt="">
+		<img src="images/resources/profile-image.jpg" alt=""><!--back ground img-->
+
 		<ul class="profile-controls">
 			<li><a href="#" title="Add friend" data-toggle="tooltip"><i class="fa fa-user-plus"></i></a></li>
 			<li><a href="#" title="Follow" data-toggle="tooltip"><i class="fa fa-star"></i></a></li>
@@ -39,8 +42,9 @@ let user_profile_content =
 		<div class="row">
 			<div class="col-lg-2 col-md-3">
 				<div class="profile-author">
-					<div class="profile-author-thumb">
-						<img alt="author" src="images/resources/author.jpg">
+					<div class="profile-author-thumb" style="width: 160px; height: 160px">
+						<img alt="author" src="${imgPath}${loginUser.image}" style="width: 160px; height: 160px">
+<!--						<img alt="author" src="images/resources/author.jpg" width="160" height="160">-->
 						<div class="edit-dp">
 							<label class="fileContainer">
 								<i class="fa fa-camera"></i>
@@ -50,8 +54,8 @@ let user_profile_content =
 					</div>
 
 					<div class="author-content">
-						<a class="h4 author-name" href="unused/about.html">Jack Carter</a>
-						<div class="country">Ontario, CA</div>
+						<a class="h4 author-name" onclick="showAboutPage(); return false">${loginUser.displayName}</a>
+						<div class="country">${loginUser.address}</div>
 					</div>
 				</div>
 			</div>

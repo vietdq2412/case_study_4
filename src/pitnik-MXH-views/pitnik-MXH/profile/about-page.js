@@ -1,3 +1,5 @@
+let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+let dob = new Date(loginUser.DOB);
 let about_page_content = user_profile_content +`
 <div class="col-lg-4 col-md-4">
                                 <aside class="sidebar">
@@ -6,16 +8,15 @@ let about_page_content = user_profile_content +`
                                         <div class="personal-head">
                                             <span class="f-title"><i class="fa fa-user"></i> About Me:</span>
                                             <p>
-                                                Hi, I’m John Carter, I’m 36 and I work as a Digital Designer for the
-                                                “dewwater” Agency in Ontario, Canada
+                                                ${loginUser.aboutMe}
                                             </p>
                                             <span class="f-title"><i class="fa fa-birthday-cake"></i> Birthday:</span>
                                             <p>
-                                                December 17, 1985
+                                                ${dob.toLocaleDateString("en-US", options)}
                                             </p>
                                             <span class="f-title"><i class="fa fa-phone"></i> Phone Number:</span>
                                             <p>
-                                                +1-989-232435234
+                                                ${loginUser.phoneNumber}
                                             </p>
                                             <span class="f-title"><i class="fa fa-medkit"></i> Blood group:</span>
                                             <p>
@@ -23,7 +24,7 @@ let about_page_content = user_profile_content +`
                                             </p>
                                             <span class="f-title"><i class="fa fa-male"></i> Gender:</span>
                                             <p>
-                                                Male
+                                                ${loginUser.gender}
                                             </p>
                                             <span class="f-title"><i class="fa fa-globe"></i> Country:</span>
                                             <p>

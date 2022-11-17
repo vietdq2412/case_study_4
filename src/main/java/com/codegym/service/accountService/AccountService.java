@@ -30,16 +30,23 @@ public class AccountService implements IAccountService {
         return accountRepo.findAll();
     }
 
-
-
+    /**
+     *
+     * @param account include username, email, password
+     * @return True if username & email are not existed
+     */
     @Override
     public boolean save(Account account) {
 //        boolean check = accountRepo.existsAccountByUsername(account.getUsername()) &&
 //                accountRepo.existsAccountByEmail(account.getEmail());
-boolean check = accountRepo.existsAccountByUsernameOrEmail(account.getUsername(), account.getEmail());
+        boolean check = accountRepo.existsAccountByUsernameOrEmail(account.getUsername(), account.getEmail());
         if (!check) {
             accountRepo.save(account);
-            AppUser newUser = AppUser.builder().account(findByUserName(account.getUsername())).status(NOT_VERIFIED).build();
+            AppUser newUser = AppUser.builder()
+                    .account(findByUserName(account.getUsername()))
+                    .status(NOT_VERIFIED)
+                    .displayName("Nana")
+                    .build();
             newUser.setEmail(account.getEmail());
             appUserService.save(newUser);
             //accountRepo.save(account);

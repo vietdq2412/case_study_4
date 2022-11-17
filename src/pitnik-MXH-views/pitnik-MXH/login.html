@@ -132,7 +132,7 @@
             url: "http://localhost:8081/account/login",
             //xử lý khi thành công
             success: function (data) {
-                window.localStorage.setItem("Authorization", JSON.stringify(data), 8.64e+7);
+                window.localStorage.setItem("Account", JSON.stringify(data), 8.64e+7);
                 console.log(data)
                 $("#message").text("login succes! " + data.username);
                 $("#error").text("")

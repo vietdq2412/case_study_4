@@ -106,19 +106,18 @@ let profile_setting_page_content = user_profile_content + `<div class="col-lg-9"
 							<div class="change-photo">
 								<figure><img id="img-out" alt="" width="250" height="250"></figure>
 								<div class="edit-img">
-									<form class="edit-phto">
-
+									<form id="img-form" class="edit-phto" enctype="multipart/form-data">
 										<label class="fileContainer">
 											<i class="fa fa-camera-retro"></i>
 											Chage DP
-											<input id="image" type="file" onchange="loadFile(event)">
+											<input id="img-input" type="file" name="media[]" onchange="loadFile(event)"/>
 										</label>
 									</form>						
 								</div>
 							</div>
 						</div>
 						<div class="stg-form-area">
-							<form method="post" class="c-form" onsubmit="saveInfo()">
+							<form method="post" class="c-form" onsubmit="saveInfo(); return false">
 								<div>
 									<label>Display Name *</label>
 									<input id="display-name" type="text" placeholder="Display name" required>
@@ -159,7 +158,7 @@ let profile_setting_page_content = user_profile_content + `<div class="col-lg-9"
 								</div>
 								<div>
 									<label>about your profile</label>
-									<textarea id="about" rows="3" placeholder="write someting about yourself"></textarea>
+									<textarea id="about" rows="3">${loginUser.aboutMe}</textarea>
 								</div>
 
 								<div>
@@ -779,23 +778,24 @@ let profile_setting_page_content = user_profile_content + `<div class="col-lg-9"
 </div><!-- sidebar -->`
 
 let img;
+let imgData;
 
 function loadFile(event) {
-    let date = new Date();
-    let milliseconds = date.getTime();
     let output = document.getElementById('img-out');
-    img = milliseconds + "-" + event.target.files[0].name
+    img = event.target.files[0].name
+    imgData = event.target.files[0];
     output.src = URL.createObjectURL(event.target.files[0]);
     output.onload = function () {
         URL.revokeObjectURL(output.src) // free memory
     }
 };
 
-function saveInfo() {
+async function saveInfo() {
     let male = document.getElementById("male").checked;
     let female = document.getElementById("female").checked;
     let custom = document.getElementById("custom").checked;
     let gender;
+    let dob = $("#dob").val();
 
     if (male) gender = "male";
     if (female) gender = "female";
@@ -805,33 +805,36 @@ function saveInfo() {
         id: loginUser.id,
         displayName: $("#display-name").val(),
         email: $("#email").val(),
-        DOB: $("#dob").val(),
+        DOB: dob,
         phoneNumber: $("#phone").val(),
         gender: gender,
         aboutMe: $("#about").val(),
         address: $("#country").val(),
         image: img,
+        status: "0"
     }
 
     console.log("d", userInfomation)
-    $.ajax({
+    await $.ajax({
         type: "put",
         headers: {
             Authorization: "",
         },
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(userInfomation),
+        // data: {appUser: JSON.stringify(userInfomation), img:imgData},
         url: "http://localhost:8081/user/"+loginUser.id, //xử lý khi thành công
-        success: function (data) {
-
+        success: await function (data) {
+            saveImg();
             console.log(data)
-            $("#message").text("login succes! " + data.username);
+            loginUser.DOB = dob;
+            $("#message").text("succes! " + data.username);
             $("#error").text("")
-            if (data.status == 0) {
-                window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/newsfeed.html"
-            } else {
-                window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/profile.html"
-            }
+            // if (data.status == 0) {
+            //     window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/newsfeed.html"
+            // } else {
+            //     window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/profile.html"
+            // }
         },
         error: function (data) {
             console.log(data)
@@ -841,4 +844,27 @@ function saveInfo() {
     });
     event.preventDefault();
     //chặn sự kiện mặc định của thẻ
+}
+
+async function saveImg(){
+    let form = document.getElementById("img-form");
+    let imgObject = new FormData(form);
+    imgObject.append('img', imgData);
+
+    await $.ajax({
+        type: "post",
+        headers: {
+            Authorization: "",
+        },
+        enctype: 'multipart/form-data',
+        processData: false,
+        contentType: false,
+        data: imgObject,
+        url: "http://localhost:8081/user/saveImg",
+        success: await function (data) {
+            console.log(data)
+        },
+        error: function (data) {
+        }
+    });
 }

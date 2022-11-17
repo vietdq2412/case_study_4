@@ -64,4 +64,10 @@ function showProfileSettingPage(id) {
     ele.className = "active";
     let dob = document.getElementById("dob")
     dob.max =   new Date().toISOString().split("T")[0];
+
+    document.getElementById("email").value = loginUser.email
+    document.getElementById("display-name").value = loginUser.displayName
+    document.getElementById("dob").value = loginUser.dob
+    document.getElementById("phone").value = loginUser.phoneNumber
+    // document.getElementById("img").value = loginUser.image
 }
