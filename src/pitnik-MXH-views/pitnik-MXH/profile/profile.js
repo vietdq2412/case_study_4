@@ -1,6 +1,5 @@
 
-
-
+let profile =0;
 if (loginUser.status == 0) {
     profileEditSettingId = "profileEditSetting"
     showProfileSettingPage(profileEditSettingId);
@@ -43,6 +42,81 @@ function showAboutPage() {
     document.getElementById(PROFILE_PAGE_CONTENT_ID).innerHTML = about_page_content;
     let ele = document.getElementById("profile-menu-about")
     ele.className = "active";
+    $('.frndz-list').owlCarousel({
+        items: 5,
+        loop: true,
+        margin: 10,
+        autoplay: false,
+        autoplayTimeout: 1500,
+        smartSpeed: 1000,
+        autoplayHoverPause: true,
+        nav: true,
+        dots: false,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:2,
+            },
+            600:{
+                items:3,
+
+            },
+            1000:{
+                items:5,
+            }
+        }
+    });
+
+    $('.photos-list').owlCarousel({
+        items: 5,
+        loop: true,
+        margin: 10,
+        autoplay: false,
+        autoplayTimeout: 1500,
+        smartSpeed: 1000,
+        autoplayHoverPause: true,
+        nav: true,
+        dots: false,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:2,
+            },
+            600:{
+                items:3,
+
+            },
+            1000:{
+                items:5,
+            }
+        }
+    });
+
+    $('.videos-list').owlCarousel({
+        items: 3,
+        loop: true,
+        margin: 30,
+        autoplay: false,
+        autoplayTimeout: 1500,
+        smartSpeed: 1000,
+        autoplayHoverPause: true,
+        nav: true,
+        dots: false,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:1,
+            },
+            600:{
+                items:2,
+
+            },
+            1000:{
+                items:3,
+            }
+        }
+    });
+
 }
 
 function showTimeLineFriend() {
@@ -69,5 +143,6 @@ function showProfileSettingPage(id) {
     document.getElementById("display-name").value = loginUser.displayName
     document.getElementById("dob").value = loginUser.dob
     document.getElementById("phone").value = loginUser.phoneNumber
+    document.getElementById("img-out").src = imgPath+ loginUser.image
     // document.getElementById("img").value = loginUser.image
 }

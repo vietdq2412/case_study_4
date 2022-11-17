@@ -84,7 +84,7 @@ let user_profile_content =
 									<a href="timeline-groups.html">Profile Groups</a>
 								</li>
 								<li>
-									<a id="profile-menu-setting" onclick="showProfileSettingPage()">Setting</a>
+									<a id="profile-menu-setting" onclick="showProfileSettingPage('generalSetting')">Setting</a>
 								</li>
 							</ul>
 						</div>

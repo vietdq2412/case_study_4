@@ -1,4 +1,3 @@
-
 let mailPattern = "[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}";
 let phonePattern = "[0-9]{10,11}"
 let profile_setting_page_content = user_profile_content + `<div class="col-lg-9">
@@ -10,7 +9,7 @@ let profile_setting_page_content = user_profile_content + `<div class="col-lg-9"
 						<a href="#gen-setting" class="nav-link" id="generalSetting" data-toggle="tab" ><i class="fa fa-gear"></i> General Setting</a>
 					</li>
 					<li class="nav-item">
-						<a href="#edit-profile" class="nav-link" id="profileEditSetting" data-toggle="tab" ><i class="fa fa-pencil"></i> Edit Profile</a>
+						<a onclick="showProfileSettingPage(this.id)" href="#edit-profile" class="nav-link" id="profileEditSetting" data-toggle="tab" ><i class="fa fa-pencil"></i> Edit Profile</a>
 					</li>
 					<li class="nav-item">
 						<a href="#notifi" class="nav-link" data-toggle="tab" ><i class="fa fa-bell"></i> Notification</a>
@@ -813,6 +812,11 @@ async function saveInfo() {
         image: img,
         status: "0"
     }
+    userInfomation = JSON.stringify(userInfomation);
+    let form = document.getElementById("img-form");
+    let data = new FormData(form);
+    data.append('img', imgData);
+    data.append('appUser',userInfomation);
 
     console.log("d", userInfomation)
     await $.ajax({
@@ -820,16 +824,19 @@ async function saveInfo() {
         headers: {
             Authorization: "",
         },
-        contentType: 'application/json; charset=utf-8',
-        data: JSON.stringify(userInfomation),
+        enctype: 'multipart/form-data',
+        processData: false,
+        contentType: false,
+        data: data,
         // data: {appUser: JSON.stringify(userInfomation), img:imgData},
-        url: "http://localhost:8081/user/"+loginUser.id, //xử lý khi thành công
-        success: await function (data) {
-            saveImg();
+        url: "http://localhost:8081/user/" + loginUser.id, //xử lý khi thành công
+        success: function (data) {
             console.log(data)
             loginUser.DOB = dob;
             $("#message").text("succes! " + data.username);
             $("#error").text("")
+            getUserInformationAPI(account.userId);
+            showAboutPage()
             // if (data.status == 0) {
             //     window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/newsfeed.html"
             // } else {
@@ -846,12 +853,12 @@ async function saveInfo() {
     //chặn sự kiện mặc định của thẻ
 }
 
-async function saveImg(){
+function saveImg() {
     let form = document.getElementById("img-form");
     let imgObject = new FormData(form);
     imgObject.append('img', imgData);
 
-    await $.ajax({
+    return $.ajax({
         type: "post",
         headers: {
             Authorization: "",
@@ -861,7 +868,7 @@ async function saveImg(){
         contentType: false,
         data: imgObject,
         url: "http://localhost:8081/user/saveImg",
-        success: await function (data) {
+        success: function (data) {
             console.log(data)
         },
         error: function (data) {

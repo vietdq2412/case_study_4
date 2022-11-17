@@ -34,10 +34,11 @@ public class AppUserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Boolean> save(@RequestBody AppUser appUser){
+    public ResponseEntity<Boolean> save(@RequestBody MultipartFile data){
         this.time = System.currentTimeMillis();
-        appUser.setImage(time+"-"+appUser.getImage());
-        return new ResponseEntity<>(appUserService.save(appUser), HttpStatus.OK);
+        System.out.println(data);
+//        appUser.setImage(time+"-"+appUser.getImage());
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
     @PostMapping("/saveImg")
     public ResponseEntity<Boolean> saveImg(@RequestBody MultipartFile img){

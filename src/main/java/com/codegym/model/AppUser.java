@@ -30,6 +30,7 @@ public class AppUser {
     private String address;
     private String image;
     private String BGImage;
+    private String gender;
 
     @Column(nullable = false, length = 50, unique = true)
     private String email;

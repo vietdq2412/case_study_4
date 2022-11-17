@@ -16,8 +16,7 @@
     let username = account.username
 
      function getUserInformationAPI(userID) {
-        console.log(userID)
-        $.ajax({
+       return  $.ajax({
             type: "Get",
             headers: {
                 Authorization: "",
@@ -28,17 +27,11 @@
             success:  function (data) {
                 console.log("base suces ", data)
                 window.localStorage.setItem("User", JSON.stringify(data));
-                // if (data.status == 0){
-                //     window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/newsfeed.html"
-                // } else {
-                //     window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/profile.html"
-                // }
             },
             error: function (data) {
                 console.log("base err", data)
             }
         });
-        return null;
     }
 
     let userImg = `<div class="user-img">

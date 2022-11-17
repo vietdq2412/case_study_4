@@ -152,7 +152,7 @@ let about_page_content = user_profile_content +`
                                     </div>
                                 </div>
                                 <div class="central-meta">
-                                    <span class="create-post">Friend's (320) <a href="timeline-friends2.html" title="">See All</a></span>
+                                    <span class="create-post">Friend's (320) <a href="../timeline-friends2.html" title="">See All</a></span>
                                     <ul class="frndz-list">
                                         <li>
                                             <img src="images/resources/recent1.jpg" alt="">
