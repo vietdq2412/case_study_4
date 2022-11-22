@@ -5,21 +5,36 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 @Service
 public class AppUserDTOService {
-    private final String FILE_PATH = "src\\pitnik-MXH-views\\pitnik-MXH\\images\\avatar";
+    private final String FILE_PATH = "src\\pitnik-MXH-views\\pitnik-MXH\\images\\avatar\\";
     public boolean saveImg(MultipartFile img, long time){
+        if (img == null) return true;
         File file = new File(FILE_PATH,time+"-"+img.getOriginalFilename());
-        try {
-            file.createNewFile();
-
-            FileCopyUtils.copy(img.getBytes(), file);
+        long start = System.currentTimeMillis();
+        System.out.println(start);
+        try (OutputStream out = new FileOutputStream(file.getPath())) {
+            out.write(img.getBytes());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+        }
+        System.out.println((System.currentTimeMillis() - start)*1000);
+
+//        try {
+//            file.createNewFile();b
+//            FileCopyUtils.copy(img.getBytes(), file);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+        while (file.length() < img.getSize()){
+            System.out.println(file.exists());
+
         }
         System.out.println(file.exists());
-        return true;
+        return false;
     }
 }

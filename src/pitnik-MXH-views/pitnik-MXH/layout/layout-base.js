@@ -25,7 +25,7 @@
             url: "http://localhost:8081/user/" + userID,
             //xử lý khi thành công
             success:  function (data) {
-                console.log("base suces ", data)
+                loginUser = data;
                 window.localStorage.setItem("User", JSON.stringify(data));
             },
             error: function (data) {
@@ -35,8 +35,8 @@
     }
 
     let userImg = `<div class="user-img">
-                        <h5>${username}</h5>
-                        <img src="https://meonhapkhau.com/wp-content/uploads/2022/05/Su-that-thu-vi-o-mat-meo-5.png" width="45" height="45" alt="">
+                        <h5>${loginUser.displayName}</h5>
+                        <img src="${imgPath}${loginUser.image}" width="45" height="45" alt="">
                         <span class="status f-online"></span>
                         <div class="user-setting">
                             <span class="seting-title">Chat setting <a href="#" title="">see all</a></span>

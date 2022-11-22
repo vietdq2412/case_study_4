@@ -34,14 +34,17 @@ public class AppUserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Boolean> save(@RequestBody MultipartFile data){
-        this.time = System.currentTimeMillis();
-        System.out.println(data);
-//        appUser.setImage(time+"-"+appUser.getImage());
-        return new ResponseEntity<>(true, HttpStatus.OK);
+    public ResponseEntity<Boolean> save(@RequestBody AppUser appUser){
+        String img = this.time+"-"+appUser.getImage();
+        if (appUser.getImage() == null){
+            img = appUserService.findById(appUser.getId()).getImage();
+        }
+        appUser.setImage(img);
+        return new ResponseEntity<>(appUserService.save(appUser), HttpStatus.OK);
     }
     @PostMapping("/saveImg")
     public ResponseEntity<Boolean> saveImg(@RequestBody MultipartFile img){
+        this.time = System.currentTimeMillis();
         appUserDTOService.saveImg(img, this.time);
         return new ResponseEntity<>(true, HttpStatus.OK);
     }

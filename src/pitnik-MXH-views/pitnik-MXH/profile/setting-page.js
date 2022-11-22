@@ -116,7 +116,7 @@ let profile_setting_page_content = user_profile_content + `<div class="col-lg-9"
 							</div>
 						</div>
 						<div class="stg-form-area">
-							<form method="post" class="c-form" onsubmit="saveInfo(); return false">
+							<form method="post" class="c-form" onsubmit="saveImg(); return false">
 								<div>
 									<label>Display Name *</label>
 									<input id="display-name" type="text" placeholder="Display name" required>
@@ -781,7 +781,7 @@ let imgData;
 
 function loadFile(event) {
     let output = document.getElementById('img-out');
-    img = event.target.files[0].name
+    img = event.target.files[0].name;
     imgData = event.target.files[0];
     output.src = URL.createObjectURL(event.target.files[0]);
     output.onload = function () {
@@ -813,35 +813,21 @@ async function saveInfo() {
         status: "0"
     }
     userInfomation = JSON.stringify(userInfomation);
-    let form = document.getElementById("img-form");
-    let data = new FormData(form);
-    data.append('img', imgData);
-    data.append('appUser',userInfomation);
 
     console.log("d", userInfomation)
-    await $.ajax({
+    let ajax = $.ajax({
         type: "put",
         headers: {
             Authorization: "",
         },
-        enctype: 'multipart/form-data',
-        processData: false,
-        contentType: false,
-        data: data,
-        // data: {appUser: JSON.stringify(userInfomation), img:imgData},
-        url: "http://localhost:8081/user/" + loginUser.id, //xử lý khi thành công
+        contentType: 'application/json; charset=utf-8',
+        data: userInfomation,
+        url: "http://localhost:8081/user/" + loginUser.id,
         success: function (data) {
-            console.log(data)
-            loginUser.DOB = dob;
+            getUserInformationAPI(loginUser.id)
             $("#message").text("succes! " + data.username);
             $("#error").text("")
-            getUserInformationAPI(account.userId);
-            showAboutPage()
-            // if (data.status == 0) {
-            //     window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/newsfeed.html"
-            // } else {
-            //     window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/profile.html"
-            // }
+            location.reload();
         },
         error: function (data) {
             console.log(data)
@@ -858,6 +844,10 @@ function saveImg() {
     let imgObject = new FormData(form);
     imgObject.append('img', imgData);
 
+    console.log("imgObject", imgObject)
+    console.log("imgData", imgData)
+    if (imgData == null) return saveInfo();
+
     return $.ajax({
         type: "post",
         headers: {
@@ -869,9 +859,11 @@ function saveImg() {
         data: imgObject,
         url: "http://localhost:8081/user/saveImg",
         success: function (data) {
+            saveInfo()
             console.log(data)
         },
         error: function (data) {
         }
     });
+    event.preventDefault();
 }

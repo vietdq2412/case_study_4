@@ -1,5 +1,6 @@
 
 let profile =0;
+console.log("loginUser.status",loginUser.status)
 if (loginUser.status == 0) {
     profileEditSettingId = "profileEditSetting"
     showProfileSettingPage(profileEditSettingId);
