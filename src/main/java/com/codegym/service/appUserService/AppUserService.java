@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AppUserService implements IAppUserService{
@@ -33,6 +34,27 @@ public class AppUserService implements IAppUserService{
 
     @Override
     public AppUser findById(Long id) {
-        return appUserRepo.findById(id).get();
+        Optional<AppUser> appUserOptional = appUserRepo.findById(id);
+        return appUserOptional.orElse(null);
+    }
+
+    @Override
+    public AppUser findByAccount(Long id) {
+        return appUserRepo.findAppUserByAccount_Id(id);
+    }
+
+    @Override
+    public void addFriend(Long currentUserId, Long targetID) {
+        appUserRepo.addFriend(currentUserId, targetID);
+    }
+
+    @Override
+    public void blockUser(Long currentUserId, Long userID) {
+
+    }
+
+    @Override
+    public void followUser(Long currentUserId, Long userID) {
+
     }
 }

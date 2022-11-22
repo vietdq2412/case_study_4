@@ -1,8 +1,10 @@
 package com.codegym.service.accountService;
 
 import com.codegym.model.Account;
+import com.codegym.model.AppUser;
 import com.codegym.model.Role;
 import com.codegym.repository.IAccountRepo;
+import com.codegym.service.appUserService.IAppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,24 +13,43 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
 @Transactional
 public class AccountService implements IAccountService {
+    private final String NOT_VERIFIED = "0";
     @Autowired
     IAccountRepo accountRepo;
+    @Autowired
+    IAppUserService appUserService;
 
     @Override
     public List<Account> findAll() {
         return accountRepo.findAll();
     }
 
+    /**
+     *
+     * @param account include username, email, password
+     * @return True if username & email are not existed
+     */
     @Override
     public boolean save(Account account) {
-        boolean check = accountRepo.existsAccountByUsername(account.getUsername());
+//        boolean check = accountRepo.existsAccountByUsername(account.getUsername()) &&
+//                accountRepo.existsAccountByEmail(account.getEmail());
+        boolean check = accountRepo.existsAccountByUsernameOrEmail(account.getUsername(), account.getEmail());
         if (!check) {
             accountRepo.save(account);
+            AppUser newUser = AppUser.builder()
+                    .account(findByUserName(account.getUsername()))
+                    .status(NOT_VERIFIED)
+                    .displayName("Nana")
+                    .build();
+            newUser.setEmail(account.getEmail());
+            appUserService.save(newUser);
+            //accountRepo.save(account);
             return true;
         }
         return false;
@@ -45,7 +66,9 @@ public class AccountService implements IAccountService {
 
     @Override
     public Account findById(Long id) {
-        return accountRepo.findById(id).get();
+        Optional<Account> account = accountRepo.findById(id);
+        boolean c = account.isPresent();
+        return account.get();
     }
 
     public Account findByUserName(String username) {
@@ -53,11 +76,10 @@ public class AccountService implements IAccountService {
     }
 
     /**
-     *
      * @param account include username and password
      * @return account if existed, null if not found this account
      */
-    public Account  checkLogin(Account account) {
+    public Account checkLogin(Account account) {
         Account accountRs = accountRepo.findAccountByUsernameAndPassword(account.getUsername(), account.getPassword());
         return accountRs;
     }
