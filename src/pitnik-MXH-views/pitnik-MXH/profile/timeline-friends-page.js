@@ -1,4 +1,5 @@
-let timeline_friend_page_content = user_profile_content+ `
+function getProfileTimeLineFriendContent(){
+    return getUserProfileSectionContent()+ `
 <div class="col-lg-12">
         <div class="central-meta">
             <div class="title-block">
@@ -308,3 +309,4 @@ let timeline_friend_page_content = user_profile_content+ `
         </div>
                     </div>
 `
+}

@@ -1,10 +1,8 @@
-let weatherBGImg = "images/resources/weather.jpg";
-let banner_widgetbg = "images/resources/baner-widgetbg.jpg";
-
-
-let timeline_page_content =
-    user_profile_content +
-    `<div class="col-lg-3">
+function getProfileTimeLineContent(){
+    let weatherBGImg = "images/resources/weather.jpg";
+    let banner_widgetbg = "images/resources/baner-widgetbg.jpg";
+    return getUserProfileSectionContent() +
+        `<div class="col-lg-3">
     <aside class="sidebar static left">
         <div class="widget">
             <h4 class="widget-title">User Badges <a class="see-all" href="#" title="">See All</a></h4>
@@ -1647,5 +1645,11 @@ let timeline_page_content =
         <!-- little links -->
     </aside>
 </div><!-- sidebar -->`
+}
+
+
+
+
+
 
 

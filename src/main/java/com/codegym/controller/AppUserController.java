@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @CrossOrigin("*")
@@ -31,6 +32,11 @@ public class AppUserController {
     public ResponseEntity<AppUser> getById(@PathVariable Long id){
         AppUser appUser = appUserService.findById(id);
         return new ResponseEntity<>(appUser, HttpStatus.OK);
+    }
+    @GetMapping("displayname/{displayName}")
+    public ResponseEntity<List<AppUser>> findByDisplayName(@PathVariable String displayName){
+        List<AppUser> appUserList = appUserService.findByDisplayNameContaining(displayName);
+        return new ResponseEntity<>(appUserList, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

@@ -1,40 +1,40 @@
-    let PROFILE_PAGE_CONTENT_ID = "page-contents";
-    let profileEditSettingId = "generalSetting";
+let PROFILE_PAGE_CONTENT_ID = "page-contents";
+let profileEditSettingId = "generalSetting";
 
-    let account = window.localStorage.getItem("Account");
-    account = JSON.parse(account);
-    let loginUser;
-    if (account == null || account == "") {
-        window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/login.html";
-    } else {
-       getUserInformationAPI(account.userId);
-        loginUser = window.localStorage.getItem("User");
-        loginUser = JSON.parse(loginUser);
+let account = window.localStorage.getItem("Account");
+account = JSON.parse(account);
+let loginUser;
+if (account == null || account == "") {
+    window.location.href = "/case4/src/pitnik-MXH-views/pitnik-MXH/login.html";
+} else {
+    getUserInformationAPI(account.userId);
+    loginUser = window.localStorage.getItem("User");
+    loginUser = JSON.parse(loginUser);
 
-    }
+}
 
-    let username = account.username
+let username = account.username
 
-     function getUserInformationAPI(userID) {
-       return  $.ajax({
-            type: "Get",
-            headers: {
-                Authorization: "",
-            },
-            contentType: 'application/json; charset=utf-8',
-            url: "http://localhost:8081/user/" + userID,
-            //xử lý khi thành công
-            success:  function (data) {
-                loginUser = data;
-                window.localStorage.setItem("User", JSON.stringify(data));
-            },
-            error: function (data) {
-                console.log("base err", data)
-            }
-        });
-    }
+function getUserInformationAPI(userID) {
+    return $.ajax({
+        type: "Get",
+        headers: {
+            Authorization: "",
+        },
+        contentType: 'application/json; charset=utf-8',
+        url: "http://localhost:8081/user/" + userID,
+        //xử lý khi thành công
+        success: function (data) {
+            loginUser = data;
+            window.localStorage.setItem("User", JSON.stringify(data));
+        },
+        error: function (data) {
+            console.log("base err", data)
+        }
+    });
+}
 
-    let userImg = `<div class="user-img">
+let userImg = `<div class="user-img">
                         <h5>${loginUser.displayName}</h5>
                         <img src="${imgPath}${loginUser.image}" width="45" height="45" alt="">
                         <span class="status f-online"></span>
@@ -47,7 +47,7 @@
                             </ul>
                             <span class="seting-title">User setting <a href="#" title="">see all</a></span>
                             <ul class="log-out">
-                                <li><a href="/case4/src/pitnik-MXH-views/pitnik-MXH/profile.html" title=""><i class="ti-user"></i> view profile</a></li>
+                                <li><a onclick="showProfilePage(${loginUser.id})" title=""><i class="ti-user"></i> view profile</a></li>
                                 <li><a href="#" title=""><i class="ti-target"></i>activity log</a></li>
                                 <li><a href="setting.html" title=""><i class="ti-settings"></i>account setting</a></li>
                                 <li><a href="logout.html" title=""><i class="ti-power-off"></i>log out</a></li>
@@ -56,7 +56,7 @@
                     </div>`;
 
 
-    let responsive_header = `
+let responsive_header = `
     <div id="responsive-header" class="responsive-header">
         <div class="mh-head first Sticky">
                 <span class="mh-btns-left">
@@ -268,7 +268,7 @@
     </div><!-- responsive header -->
     `
 
-    let topbar_stick = `
+let topbar_stick = `
     <div id="topbar-stick" class="topbar stick">
         <div class="logo">
             <a title="" href="/case4/src/pitnik-MXH-views/pitnik-MXH/newsfeed.html"><img src="images/logo.png" alt=""></a>
@@ -281,9 +281,23 @@
             </div>
             <div class="top-search">
                 <form method="post" class="">
-                    <input type="text" placeholder="Search People, Pages, Groups etc">
+                    <input oninput="showSearchResult(this)" type="text" id="search-input" placeholder="Search People, Pages, Groups etc">
                     <button data-ripple><i class="ti-search"></i></button>
                 </form>
+                 <ul class="drops-menu" id="search-drop" style="width: 500px;position: absolute
+                 ;background-color: white" onmouseleave="hideSearchResult(this)">
+                            <li>
+            <div>
+                <figure>
+                    <img src="images/resources/thumb-2.jpg" alt="">
+                </figure>
+                <div class="mesg-meta">
+                    <h6><a href="#" title="">Loren</a></h6>
+                    <span><b>Amy</b> is mutule friend</span>
+                </div>
+            </div>
+        </li>
+                  </ul>
             </div>
             <div class="page-name">
                 <span>Post Detail</span>
@@ -292,7 +306,7 @@
                 <li><a href="newsfeed.html" title="Home" data-ripple=""><i class="fa fa-home"></i></a></li>
                 <li>
                     <a href="#" title="Friend Requests" data-ripple="">
-                        <i class="fa fa-user"></i><em class="bg-red">5</em>
+                        <i class="fa fa-user"></i><em class="bg-red">0</em>
                     </a>
                     <div class="dropdowns">
                         <span>5 New Requests <a href="#" title="">View all Requests</a></span>
@@ -313,77 +327,13 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div>
-                                    <figure>
-                                        <img src="images/resources/thumb-3.jpg" alt="">
-                                    </figure>
-                                    <div class="mesg-meta">
-                                        <h6><a href="#" title="">Tina Trump</a></h6>
-                                        <span><b>Simson</b> is mutule friend</span>
-                                        <i>2 days ago</i>
-                                    </div>
-                                    <div class="add-del-friends">
-                                        <a href="#" title=""><i class="fa fa-heart"></i></a>
-                                        <a href="#" title=""><i class="fa fa-trash"></i></a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <figure>
-                                        <img src="images/resources/thumb-4.jpg" alt="">
-                                    </figure>
-                                    <div class="mesg-meta">
-                                        <h6><a href="#" title="">Andrew</a></h6>
-                                        <span><b>Bikra</b> is mutule friend</span>
-                                        <i>4 hours ago</i>
-                                    </div>
-                                    <div class="add-del-friends">
-                                        <a href="#" title=""><i class="fa fa-heart"></i></a>
-                                        <a href="#" title=""><i class="fa fa-trash"></i></a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <figure>
-                                        <img src="images/resources/thumb-5.jpg" alt="">
-                                    </figure>
-                                    <div class="mesg-meta">
-                                        <h6><a href="#" title="">Dasha</a></h6>
-                                        <span><b>Sarah</b> is mutule friend</span>
-                                        <i>9 hours ago</i>
-                                    </div>
-                                    <div class="add-del-friends">
-                                        <a href="#" title=""><i class="fa fa-heart"></i></a>
-                                        <a href="#" title=""><i class="fa fa-trash"></i></a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <figure>
-                                        <img src="images/resources/thumb-1.jpg" alt="">
-                                    </figure>
-                                    <div class="mesg-meta">
-                                        <h6><a href="#" title="">Emily</a></h6>
-                                        <span><b>Amy</b> is mutule friend</span>
-                                        <i>4 hours ago</i>
-                                    </div>
-                                    <div class="add-del-friends">
-                                        <a href="#" title=""><i class="fa fa-heart"></i></a>
-                                        <a href="#" title=""><i class="fa fa-trash"></i></a>
-                                    </div>
-                                </div>
-                            </li>
                         </ul>
                         <a href="friend-requests.html" title="" class="more-mesg">View All</a>
                     </div>
                 </li>
                 <li>
                     <a href="#" title="Notification" data-ripple="">
-                        <i class="fa fa-bell"></i><em class="bg-purple">7</em>
+                        <i class="fa fa-bell"></i><em class="bg-purple">0</em>
                     </a>
                     <div class="dropdowns">
                         <span>4 New Notifications <a href="#" title="">Mark all as read</a></span>
@@ -469,7 +419,7 @@
                 </li>
                 <li>
                     <a href="#" title="Messages" data-ripple=""><i class="fa fa-commenting"></i><em
-                            class="bg-blue">9</em></a>
+                            class="bg-blue">0</em></a>
                     <div class="dropdowns">
                         <span>5 New Messages <a href="#" title="">Mark all as read</a></span>
                         <ul class="drops-menu">
@@ -960,7 +910,7 @@
     </div><!-- topbar -->
     `
 
-    let fixed_sidebar_right = `<div id="fixed-sidebar right" class="fixed-sidebar right">
+let fixed_sidebar_right = `<div id="fixed-sidebar right" class="fixed-sidebar right">
                 <div class="chat-friendz">
                     <ul class="chat-users">
                         <li>
@@ -1105,7 +1055,7 @@
                 </div>
             </div><!-- right sidebar user chat -->`
 
-    let fixed_sidebar_left = `<div id="fixed-sidebar left" class="fixed-sidebar left">
+let fixed_sidebar_left = `<div id="fixed-sidebar left" class="fixed-sidebar left">
                 <div class="menu-left">
                     <ul class="left-menu">
                         <li>
@@ -1296,7 +1246,7 @@
                 </div>
             </div><!-- left sidebar menu -->`
 
-    let side_panel = `<div class="side-panel">
+let side_panel = `<div class="side-panel">
                 <h4 class="panel-title">General Setting</h4>
                 <form method="post">
                     <div class="setting-row">
@@ -1361,11 +1311,72 @@
             </div><!-- side panel -->`
 
 
-    getLayout();
+getLayout();
 
-    function getLayout() {
-        let layout = document.getElementById("layout");
-        console.log("1, ", layout)
-        layout.innerHTML =
-            responsive_header + topbar_stick + fixed_sidebar_right + fixed_sidebar_left + side_panel;
-    }
+function getLayout() {
+    let layout = document.getElementById("layout");
+    console.log("1, ", layout)
+    layout.innerHTML =
+        responsive_header + topbar_stick + fixed_sidebar_right + fixed_sidebar_left + side_panel;
+}
+
+function hideSearchResult(ele) {
+    document.addEventListener("click", (event) => {
+        if (!ele.contains(event.target)) {
+            ele.hidden = true;
+        }
+    })
+}
+
+
+function showSearchResult(ele) {
+    let inputEle = document.getElementById('search-drop');
+    inputEle.hidden = false;
+    let displayName = $("#search-input").val();
+    let url = "http://localhost:8081/user/displayname/" + displayName;
+    console.log(url)
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function (data) {
+            showSearchResultContent(data)
+        }
+    });
+
+}
+
+function showSearchResultContent(listUser){
+    let content =
+        `
+        <li>
+            <div>
+                <figure>
+                    <img src="images/resources/thumb-2.jpg" alt="">
+                </figure>
+                <div class="mesg-meta">
+                    <h6><a href="#" title="">Loren</a></h6>
+                    <span><b>Amy</b> is mutule friend</span>
+                </div>
+            </div>
+        </li>
+        `;
+    console.log(listUser)
+    listUser.forEach((user) => {
+        content += `
+        <li>
+            <div>
+                <figure>
+                    <img src="${imgPath}${user.image}" alt="">
+                </figure>
+                <div class="mesg-meta">
+                    <h6><a href="#" title="">${user.displayName}</a></h6>
+                    <span><b>Amy</b> is mutule friend</span>
+                </div>
+            </div>
+        </li>
+        `;
+    });
+
+    let drop_content = document.getElementById('search-drop');
+    drop_content.innerHTML = content;
+}

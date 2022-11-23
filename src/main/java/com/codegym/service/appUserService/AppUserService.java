@@ -44,6 +44,11 @@ public class AppUserService implements IAppUserService{
     }
 
     @Override
+    public List<AppUser> findByDisplayNameContaining(String displayName){
+        List<AppUser> userList = appUserRepo.findAppUsersByDisplayNameContaining(displayName);
+        return userList;
+    }
+    @Override
     public void addFriend(Long currentUserId, Long targetID) {
         appUserRepo.addFriend(currentUserId, targetID);
     }

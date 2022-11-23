@@ -18,7 +18,16 @@ jQuery(document).ready(function($) {
 		  $('.popup-wraper.subscription').addClass('closed');
 		  return false;
 		});
-	// popup end	
+	// popup end
+
+	//------- searcg Dropdowns
+	$('.top-area > .top-search > li > input').on("click",function(){
+		var $parent = $(this).parent('li');
+		$(this).addClass('active').parent().siblings().children('a').removeClass('active');
+		$parent.siblings().children('div').removeClass('active');
+		$(this).siblings('div').toggleClass('active');
+		return false;
+	});
 	
 //------- Notifications Dropdowns
   $('.top-area > .setting-area > li > a').on("click",function(){

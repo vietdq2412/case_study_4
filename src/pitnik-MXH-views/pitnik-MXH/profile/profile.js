@@ -1,15 +1,6 @@
 
-let profile =0;
-console.log("loginUser.status",loginUser.status)
-if (loginUser.status == 0) {
-    profileEditSettingId = "profileEditSetting"
-    showProfileSettingPage(profileEditSettingId);
-} else {
-    showAboutPage()
-}
-
 function showTimeLine() {
-    document.getElementById("page-contents").innerHTML = timeline_page_content;
+    document.getElementById("page-contents").innerHTML = getProfileTimeLineContent();
     let ele = document.getElementById("profile-menu-timeline")
     ele.className = "active";
 
@@ -40,7 +31,7 @@ function showTimeLine() {
 }
 
 function showAboutPage() {
-    document.getElementById(PROFILE_PAGE_CONTENT_ID).innerHTML = about_page_content;
+    document.getElementById(PROFILE_PAGE_CONTENT_ID).innerHTML = getAboutPageContent();
     let ele = document.getElementById("profile-menu-about")
     ele.className = "active";
     $('.frndz-list').owlCarousel({
@@ -121,29 +112,29 @@ function showAboutPage() {
 }
 
 function showTimeLineFriend() {
-    document.getElementById(PROFILE_PAGE_CONTENT_ID).innerHTML = timeline_friend_page_content;
+    document.getElementById(PROFILE_PAGE_CONTENT_ID).innerHTML = getProfileTimeLineFriendContent();
     let ele = document.getElementById("profile-menu-friend")
     ele.className = "active";
 }
 
 function showTimeLinePhotos() {
-    document.getElementById(PROFILE_PAGE_CONTENT_ID).innerHTML = timeline_photo_page_content;
+    document.getElementById(PROFILE_PAGE_CONTENT_ID).innerHTML = getProfilePhotosContent();
     let ele = document.getElementById("profile-menu-photo")
     ele.className = "active";
 }
 
 function showProfileSettingPage(id) {
-    document.getElementById(PROFILE_PAGE_CONTENT_ID).innerHTML = profile_setting_page_content;
+    document.getElementById(PROFILE_PAGE_CONTENT_ID).innerHTML = getProfileSettingContent();
     document.getElementById(id).className += " active"
     let ele = document.getElementById("profile-menu-setting")
     ele.className = "active";
     let dob = document.getElementById("dob")
     dob.max =   new Date().toISOString().split("T")[0];
 
-    document.getElementById("email").value = loginUser.email
-    document.getElementById("display-name").value = loginUser.displayName
-    document.getElementById("dob").value = loginUser.dob
-    document.getElementById("phone").value = loginUser.phoneNumber
-    document.getElementById("img-out").src = imgPath+ loginUser.image
-    // document.getElementById("img").value = loginUser.image
+    document.getElementById("email").value = profile.email
+    document.getElementById("display-name").value = profile.displayName
+    document.getElementById("dob").value = profile.dob
+    document.getElementById("phone").value = profile.phoneNumber
+    document.getElementById("img-out").src = imgPath+ profile.image
+    // document.getElementById("img").value = profile.image
 }

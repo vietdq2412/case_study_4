@@ -1,6 +1,7 @@
-let mailPattern = "[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}";
-let phonePattern = "[0-9]{10,11}"
-let profile_setting_page_content = user_profile_content + `<div class="col-lg-9">
+function getProfileSettingContent(){
+    let mailPattern = "[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}";
+    let phonePattern = "[0-9]{10,11}"
+    return  getUserProfileSectionContent() + `<div class="col-lg-9">
 	<div class="central-meta">
 		<div class="about">
 			<div class="d-flex flex-row mt-2">
@@ -775,6 +776,9 @@ let profile_setting_page_content = user_profile_content + `<div class="col-lg-9"
 		</div>
 	</aside>
 </div><!-- sidebar -->`
+}
+
+
 
 let img;
 let imgData;

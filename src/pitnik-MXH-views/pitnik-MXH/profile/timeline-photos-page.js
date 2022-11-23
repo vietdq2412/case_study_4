@@ -1,4 +1,5 @@
-let timeline_photo_page_content = user_profile_content+`<div class="col-lg-3">
+function getProfilePhotosContent(){
+   return  getUserProfileSectionContent()+`<div class="col-lg-3">
     <aside class="sidebar static">
         <div class="widget">
             <h4 class="widget-title">Shortcuts</h4>
@@ -284,3 +285,5 @@ let timeline_photo_page_content = user_profile_content+`<div class="col-lg-3">
         </div>
     </div><!-- photos -->
 </div><!-- centerl meta -->`
+}
+

@@ -1,0 +1,2 @@
+
+let imgPath = "images/avatar/"
