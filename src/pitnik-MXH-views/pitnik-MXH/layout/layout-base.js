@@ -47,7 +47,7 @@ let userImg = `<div class="user-img">
                             </ul>
                             <span class="seting-title">User setting <a href="#" title="">see all</a></span>
                             <ul class="log-out">
-                                <li><a onclick="showProfilePage(${loginUser.id})" title=""><i class="ti-user"></i> view profile</a></li>
+                                <li><a href="main.html" title=""><i class="ti-user"></i> view profile</a></li>
                                 <li><a href="#" title=""><i class="ti-target"></i>activity log</a></li>
                                 <li><a href="setting.html" title=""><i class="ti-settings"></i>account setting</a></li>
                                 <li><a href="logout.html" title=""><i class="ti-power-off"></i>log out</a></li>
@@ -284,20 +284,28 @@ let topbar_stick = `
                     <input oninput="showSearchResult(this)" type="text" id="search-input" placeholder="Search People, Pages, Groups etc">
                     <button data-ripple><i class="ti-search"></i></button>
                 </form>
-                 <ul class="drops-menu" id="search-drop" style="width: 500px;position: absolute
-                 ;background-color: white" onmouseleave="hideSearchResult(this)">
+                <ul class="drops-menu mt-1" id="search-drop" style="width: 400px;position: absolute
+                    ;background-color: white" onmouseleave="hideSearchResult(this)" hidden>
+                </ul>   
+                <div class="dropdowns">
+                        <span>4 New Notifications <a href="#" title="">Mark all as read</a></span>
+                        <ul class="drops-menu">
                             <li>
-            <div>
-                <figure>
-                    <img src="images/resources/thumb-2.jpg" alt="">
-                </figure>
-                <div class="mesg-meta">
-                    <h6><a href="#" title="">Loren</a></h6>
-                    <span><b>Amy</b> is mutule friend</span>
-                </div>
-            </div>
-        </li>
-                  </ul>
+                                <a href="notifications.html" title="">
+                                    <figure>
+                                        <img src="images/resources/thumb-1.jpg" alt="">
+                                        <span class="status f-online"></span>
+                                    </figure>
+                                    <div class="mesg-meta">
+                                        <h6>sarah Loren</h6>
+                                        <span>commented on your new profile status</span>
+                                        <i>2 min ago</i>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <a href="notifications.html" title="" class="more-mesg">View All</a>
+                    </div>             
             </div>
             <div class="page-name">
                 <span>Post Detail</span>
@@ -1346,31 +1354,21 @@ function showSearchResult(ele) {
 }
 
 function showSearchResultContent(listUser){
-    let content =
-        `
-        <li>
-            <div>
-                <figure>
-                    <img src="images/resources/thumb-2.jpg" alt="">
-                </figure>
-                <div class="mesg-meta">
-                    <h6><a href="#" title="">Loren</a></h6>
-                    <span><b>Amy</b> is mutule friend</span>
-                </div>
-            </div>
-        </li>
-        `;
+    let content = "";
     console.log(listUser)
     listUser.forEach((user) => {
         content += `
-        <li>
+        <li id="search-result-item">
             <div>
                 <figure>
-                    <img src="${imgPath}${user.image}" alt="">
+                    <img src="${imgPath}${user.image}" alt="" style="width: 40px; height: 40px">
                 </figure>
-                <div class="mesg-meta">
-                    <h6><a href="#" title="">${user.displayName}</a></h6>
-                    <span><b>Amy</b> is mutule friend</span>
+             
+                    <div  class="mesg-meta" onclick="showProfilePage(${user.id});
+                    let inputEle = document.getElementById('search-drop');
+                    inputEle.hidden = true;">
+                    <h6><a  title="">${user.displayName}</a></h6>
+                    <span><b>Amy</b> ${user.id}</span>
                 </div>
             </div>
         </li>

@@ -1198,6 +1198,14 @@ jQuery(".post-comt-box textarea").on("keydown", function(event) {
 	
 	
 // Responsive nav dropdowns
+	$('#search-input').on('input', function () {
+		$(this).parent().siblings().children('ul').slideUp();
+		$(this).parent().siblings().removeClass('active');
+		$(this).parent().children('ul').slideToggle();
+		$(this).parent().toggleClass('active');
+		return false;
+	});
+
 	$('li.menu-item-has-children > a').on('click', function () {
 		$(this).parent().siblings().children('ul').slideUp();
 		$(this).parent().siblings().removeClass('active');

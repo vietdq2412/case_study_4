@@ -205,7 +205,7 @@ function getAboutPageContent(){
     </div>
     <div class="central-meta">
 				<span class="create-post">Friend's (320)
-					<a href="../timeline-friends2.html" title="">See All</a>
+					<a href="../unused/timeline-friends2.html" title="">See All</a>
 				</span>
         <ul class="frndz-list">
             <li>

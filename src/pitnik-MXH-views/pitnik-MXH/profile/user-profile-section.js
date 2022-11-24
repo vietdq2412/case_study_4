@@ -1,10 +1,56 @@
-
-
-function getUserProfileSectionContent(){
-let profile_controls = "";
-if (profile.id !== loginUser.id) profile_controls =
-    `<ul class="profile-controls">
-			<li><a onclick="addFriend(${profile.id})" style="background-color: greenyellow" href="#" title="Add friend" data-toggle="tooltip"><i class="fa fa-check" style="font-size:15px;color:white"></i></a></li>
+function getUserProfileSectionContent(relationship) {
+    let profile_controls = "";
+    let settingContent = `
+                    <li>
+						<div class="more">
+							<i class="fa fa-ellipsis-h"></i>
+							<ul class="more-dropdown">
+								<li>
+									<a href="timeline-groups.html">Profile Groups</a>
+								</li>
+								<li>
+									<a id="profile-menu-setting" onclick="showProfileSettingPage('generalSetting')">Setting</a>
+								</li>
+							</ul>
+						</div>
+					</li>`;
+    if (profile.id !== loginUser.id) {
+        settingContent = "";
+        let addFriendIcon = `<li>
+                            <a onclick="addFriend(${profile.id})" 
+                            href="#" title="Add friend" data-toggle="tooltip">
+                            <i class="fa fa-user-plus"></i>
+                            </a>
+                        </li>`
+        let friendRequestedIcon = `<li>
+                            <a onclick="addFriend(${profile.id})" 
+                            style="background-color: greenyellow" 
+                            href="#" title="Cancel request" data-toggle="tooltip">
+                            <i class="fa fa-spinner" style="color:white"></i>
+                            </a>
+                           </li>`
+        let friendIcon = `<li>
+                            <a onclick="addFriend(${profile.id})" 
+                            style="background-color: #03960e" 
+                            href="#" title="Cancel request" data-toggle="tooltip">
+                            <i class='fas fa-user-check'></i>
+                            </a>
+                           </li>`
+        let relationStatus = friendIcon;
+        switch (relationship) {
+            case 1:
+                relationStatus = addFriendIcon;
+                break;
+        case 1:
+                relationStatus = friendRequestedIcon;
+                break;
+        case 1:
+                relationStatus = friendIcon;
+                break;
+        }
+        profile_controls =
+            `<ul class="profile-controls">
+            ${relationStatus}
 			<li><a onclick="follow(${profile.id})"href="#" title="Follow" data-toggle="tooltip"><i class="fa fa-star"></i></a></li>
 			<li><a class="send-mesg" href="#" title="Send Message" data-toggle="tooltip"><i class="fa fa-comment"></i></a></li>
 			<li>
@@ -16,9 +62,8 @@ if (profile.id !== loginUser.id) profile_controls =
 					</ul>
 				</div>
 			</li>
-		</ul>`
-
-
+		</ul>`;
+    }
     return `<div class="user-profile">
 	<figure>
 		<div class="edit-pp">
@@ -78,19 +123,7 @@ if (profile.id !== loginUser.id) profile_controls =
 					<li>
 						<a class=""  id="profile-menu-video" onclick="showTimeLineVideo()">Videos</a>
 					</li>
-					<li>
-						<div class="more">
-							<i class="fa fa-ellipsis-h"></i>
-							<ul class="more-dropdown">
-								<li>
-									<a href="timeline-groups.html">Profile Groups</a>
-								</li>
-								<li>
-									<a id="profile-menu-setting" onclick="showProfileSettingPage('generalSetting')">Setting</a>
-								</li>
-							</ul>
-						</div>
-					</li>
+					${settingContent}
 				</ul>
 				<ol class="folw-detail">
 					<li><span>Posts</span><ins>101</ins></li>

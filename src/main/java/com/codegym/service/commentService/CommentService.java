@@ -32,7 +32,10 @@ public class CommentService implements ICommentService{
 
     @Override
     public Comment findById(Long id) {
-        return iCommentRepo.findById(id).get();
+        if (iCommentRepo.findById(id).isPresent()){
+            return iCommentRepo.findById(id).get();
+        }
+        return null;
     }
 
     @Override

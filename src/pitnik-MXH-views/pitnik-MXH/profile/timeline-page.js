@@ -1,6 +1,71 @@
-function getProfileTimeLineContent(){
+function getProfileTimeLineContent() {
     let weatherBGImg = "images/resources/weather.jpg";
     let banner_widgetbg = "images/resources/baner-widgetbg.jpg";
+    let createPostBox =`
+    <div class="central-meta postbox">
+        <span class="create-post">Create post</span>
+        <div class="new-postbox">
+            <figure>
+                <img src="images/resources/admin.jpg" alt="">
+            </figure>
+            <div class="newpst-input">
+                <form method="post">
+                    <textarea rows="2" placeholder="Share some what you are thinking?"></textarea>
+                </form>
+            </div>
+            <div class="attachments">
+                <ul>
+                    <li>
+                        <i class="fa fa-music"></i>
+                        <label class="fileContainer">
+                            <input type="file">
+                        </label>
+                    </li>
+                    <li>
+                        <i class="fa fa-image"></i>
+                        <label class="fileContainer">
+                            <input type="file">
+                        </label>
+                    </li>
+                    <li>
+                        <i class="fa fa-video-camera"></i>
+                        <label class="fileContainer">
+                            <input type="file">
+                        </label>
+                    </li>
+                    <li>
+                        <i class="fa fa-camera"></i>
+                        <label class="fileContainer">
+                            <input type="file">
+                        </label>
+                    </li>
+                    <li class="preview-btn">
+                        <button class="post-btn-preview" type="submit" data-ripple="">Preview</button>
+                    </li>
+                </ul>
+                <button class="post-btn" type="submit" data-ripple="">Post</button>
+            </div>
+            <div class="add-location-post">
+                <span>Drag map point to selected area</span>
+                <div class="row">
+    
+                    <div class="col-lg-6">
+                        <label class="control-label">Lat :</label>
+                        <input type="text" class="" id="us3-lat"/>
+                    </div>
+                    <div class="col-lg-6">
+                        <label>Long :</label>
+                        <input type="text" class="" id="us3-lon"/>
+                    </div>
+                </div>
+                <!-- map -->
+                <div id="us3"></div>
+            </div>
+        </div>
+    </div>`;
+    if (profile.id != loginUser.id) {
+        createPostBox = "";
+    }
     return getUserProfileSectionContent() +
         `<div class="col-lg-3">
     <aside class="sidebar static left">
@@ -265,149 +330,88 @@ function getProfileTimeLineContent(){
     </aside>
 </div><!-- sidebar -->
 <div class="col-lg-6">
-    <div class="central-meta postbox">
-        <span class="create-post">Create post</span>
-        <div class="new-postbox">
-            <figure>
-                <img src="images/resources/admin.jpg" alt="">
-            </figure>
-            <div class="newpst-input">
-                <form method="post">
-                    <textarea rows="2" placeholder="Share some what you are thinking?"></textarea>
-                </form>
-            </div>
-            <div class="attachments">
-                <ul>
-                   
-                    <li>
-                        <i class="fa fa-music"></i>
-                        <label class="fileContainer">
-                            <input type="file">
-                        </label>
-                    </li>
-                    <li>
-                        <i class="fa fa-image"></i>
-                        <label class="fileContainer">
-                            <input type="file">
-                        </label>
-                    </li>
-                    <li>
-                        <i class="fa fa-video-camera"></i>
-                        <label class="fileContainer">
-                            <input type="file">
-                        </label>
-                    </li>
-                    <li>
-                        <i class="fa fa-camera"></i>
-                        <label class="fileContainer">
-                            <input type="file">
-                        </label>
-                    </li>
-                    <li class="preview-btn">
-                        <button class="post-btn-preview" type="submit" data-ripple="">Preview</button>
-                    </li>
-                </ul>
-                <button class="post-btn" type="submit" data-ripple="">Post</button>
-            </div>
-            <div class="add-location-post">
-                <span>Drag map point to selected area</span>
-                <div class="row">
-
-                    <div class="col-lg-6">
-                        <label class="control-label">Lat :</label>
-                        <input type="text" class="" id="us3-lat"/>
-                    </div>
-                    <div class="col-lg-6">
-                        <label>Long :</label>
-                        <input type="text" class="" id="us3-lon"/>
-                    </div>
-                </div>
-                <!-- map -->
-                <div id="us3"></div>
-            </div>
-        </div>
-    </div>
+    ${createPostBox}
     <!-- add post new box -->
     <div class="central-meta">
         <span class="create-post">Suggested Friend's <a href="#" title="">See All</a></span>
         <ul class="suggested-frnd-caro">
             <li>
                 <img src="images/resources/recent1.jpg" alt="">
-                    <div class="sugtd-frnd-meta">
-                        <a href="#" title="">Olivia</a>
-                        <span>1 mutual friend</span>
-                        <ul class="add-remove-frnd">
-                            <li class="add-tofrndlist"><a href="#" title="Add friend"><i
+                <div class="sugtd-frnd-meta">
+                    <a href="#" title="">Olivia</a>
+                    <span>1 mutual friend</span>
+                    <ul class="add-remove-frnd">
+                        <li class="add-tofrndlist"><a href="#" title="Add friend"><i
                                 class="fa fa-user-plus"></i></a></li>
-                            <li class="remove-frnd"><a href="#" title="remove friend"><i
+                        <li class="remove-frnd"><a href="#" title="remove friend"><i
                                 class="fa fa-user-times"></i></a></li>
-                        </ul>
-                    </div>
+                    </ul>
+                </div>
             </li>
             <li>
                 <img src="images/resources/recent2.jpg" alt="">
-                    <div class="sugtd-frnd-meta">
-                        <a href="#" title="">Emma watson</a>
-                        <span>2 mutual friend</span>
-                        <ul class="add-remove-frnd">
-                            <li class="add-tofrndlist"><a href="#" title="Add friend"><i
+                <div class="sugtd-frnd-meta">
+                    <a href="#" title="">Emma watson</a>
+                    <span>2 mutual friend</span>
+                    <ul class="add-remove-frnd">
+                        <li class="add-tofrndlist"><a href="#" title="Add friend"><i
                                 class="fa fa-user-plus"></i></a></li>
-                            <li class="remove-frnd"><a href="#" title="remove friend"><i
+                        <li class="remove-frnd"><a href="#" title="remove friend"><i
                                 class="fa fa-user-times"></i></a></li>
-                        </ul>
-                    </div>
+                    </ul>
+                </div>
             </li>
             <li>
                 <img src="images/resources/recent3.jpg" alt="">
-                    <div class="sugtd-frnd-meta">
-                        <a href="#" title="">Isabella</a>
-                        <span><a href="#" title="">Emmy</a> is mutual friend</span>
-                        <ul class="add-remove-frnd">
-                            <li class="add-tofrndlist"><a href="#" title="Add friend"><i
+                <div class="sugtd-frnd-meta">
+                    <a href="#" title="">Isabella</a>
+                    <span><a href="#" title="">Emmy</a> is mutual friend</span>
+                    <ul class="add-remove-frnd">
+                        <li class="add-tofrndlist"><a href="#" title="Add friend"><i
                                 class="fa fa-user-plus"></i></a></li>
-                            <li class="remove-frnd"><a href="#" title="remove friend"><i
+                        <li class="remove-frnd"><a href="#" title="remove friend"><i
                                 class="fa fa-user-times"></i></a></li>
-                        </ul>
-                    </div>
+                    </ul>
+                </div>
             </li>
             <li>
                 <img src="images/resources/recent4.jpg" alt="">
-                    <div class="sugtd-frnd-meta">
-                        <a href="#" title="">Amelia</a>
-                        <span>5 mutual friend</span>
-                        <ul class="add-remove-frnd">
-                            <li class="add-tofrndlist"><a href="#" title="Add friend"><i
+                <div class="sugtd-frnd-meta">
+                    <a href="#" title="">Amelia</a>
+                    <span>5 mutual friend</span>
+                    <ul class="add-remove-frnd">
+                        <li class="add-tofrndlist"><a href="#" title="Add friend"><i
                                 class="fa fa-user-plus"></i></a></li>
-                            <li class="remove-frnd"><a href="#" title="remove friend"><i
+                        <li class="remove-frnd"><a href="#" title="remove friend"><i
                                 class="fa fa-user-times"></i></a></li>
-                        </ul>
-                    </div>
+                    </ul>
+                </div>
             </li>
             <li>
                 <img src="images/resources/recent5.jpg" alt="">
-                    <div class="sugtd-frnd-meta">
-                        <a href="#" title="">Sophia</a>
-                        <span>1 mutual friend</span>
-                        <ul class="add-remove-frnd">
-                            <li class="add-tofrndlist"><a href="#" title="Add friend"><i
+                <div class="sugtd-frnd-meta">
+                    <a href="#" title="">Sophia</a>
+                    <span>1 mutual friend</span>
+                    <ul class="add-remove-frnd">
+                        <li class="add-tofrndlist"><a href="#" title="Add friend"><i
                                 class="fa fa-user-plus"></i></a></li>
-                            <li class="remove-frnd"><a href="#" title="remove friend"><i
+                        <li class="remove-frnd"><a href="#" title="remove friend"><i
                                 class="fa fa-user-times"></i></a></li>
-                        </ul>
-                    </div>
+                    </ul>
+                </div>
             </li>
             <li>
                 <img src="images/resources/recent6.jpg" alt="">
-                    <div class="sugtd-frnd-meta">
-                        <a href="#" title="">Amelia</a>
-                        <span>3 mutual friend</span>
-                        <ul class="add-remove-frnd">
-                            <li class="add-tofrndlist"><a href="#" title="Add friend"><i
+                <div class="sugtd-frnd-meta">
+                    <a href="#" title="">Amelia</a>
+                    <span>3 mutual friend</span>
+                    <ul class="add-remove-frnd">
+                        <li class="add-tofrndlist"><a href="#" title="Add friend"><i
                                 class="fa fa-user-plus"></i></a></li>
-                            <li class="remove-frnd"><a href="#" title="remove friend"><i
+                        <li class="remove-frnd"><a href="#" title="remove friend"><i
                                 class="fa fa-user-times"></i></a></li>
-                        </ul>
-                    </div>
+                    </ul>
+                </div>
             </li>
         </ul>
     </div>
