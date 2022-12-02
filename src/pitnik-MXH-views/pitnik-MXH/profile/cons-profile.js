@@ -1,5 +1,6 @@
 
 let profile;
+let relationship;
 function showProfilePage(profileId){
     if (profileId == loginUser.id) {
         console.log(1)
@@ -14,6 +15,7 @@ function showProfilePage(profileId){
         return;
     }
     getProfileById(profileId)
+    getRelationship(profile.id);
 }
 
 function getProfileById(profileId){
@@ -27,7 +29,6 @@ function getProfileById(profileId){
         //xử lý khi thành công
         success:  function (data) {
             profile = data;
-            console.log("pro moi ", profile)
             showAboutPage()
         },
         error: function (data) {
@@ -36,10 +37,45 @@ function getProfileById(profileId){
     });
 }
 
+function getRelationship(id){
+    alert("get relation");
+    let url = `http://localhost:8081/relationship/${loginUser.id}/${id}`;
+    console.log(url)
+    $.ajax({
+        url: url,
+        type: "post",
+        headers: {
+            Authorization: loginUser.token,
+        },
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            console.log("get relation: ", data)
+        }
+    });
+}
+
 function search(){
 
 }
 
-function addFriend(id){};
+function addFriend(id){
+    let url = `http://localhost:8081/relationship/sentFriendRequest/${loginUser.id}/${id}`;
+    console.log(url)
+    $.ajax({
+        url: url,
+        type: "post",
+        success: function (data) {
+            console.log("add friend: " +data)
+        }
+    });
+};
+function cancelRequest(id){
+    alert("cancel request");
+};
+function unFriend(id){
+    alert("un friend");
+};
 
-function follow(id){};
+function follow(id){
+    alert("follow");
+};

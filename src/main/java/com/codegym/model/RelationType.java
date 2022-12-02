@@ -10,14 +10,12 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @ToString
-public class Relationship {
+public class RelationType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    private Long user;
-    private Long userTarget;
 
-    @OneToOne
-    RelationType relationType;
+    @Column(nullable = false, length = 20, unique = true)
+    private String name;
 }

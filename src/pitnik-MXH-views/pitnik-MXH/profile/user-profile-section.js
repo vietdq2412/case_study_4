@@ -23,28 +23,28 @@ function getUserProfileSectionContent(relationship) {
                             </a>
                         </li>`
         let friendRequestedIcon = `<li>
-                            <a onclick="addFriend(${profile.id})" 
+                            <a onclick="cancelRequest(${profile.id})" 
                             style="background-color: greenyellow" 
                             href="#" title="Cancel request" data-toggle="tooltip">
                             <i class="fa fa-spinner" style="color:white"></i>
                             </a>
                            </li>`
         let friendIcon = `<li>
-                            <a onclick="addFriend(${profile.id})" 
+                            <a onclick="unFriend(${profile.id})" 
                             style="background-color: #03960e" 
-                            href="#" title="Cancel request" data-toggle="tooltip">
-                            <i class='fas fa-user-check'></i>
+                            href="#" title="Friend" data-toggle="tooltip">
+                            <i class='fa fa-check'></i>
                             </a>
                            </li>`
-        let relationStatus = friendIcon;
+        let relationStatus = addFriendIcon;
         switch (relationship) {
             case 1:
                 relationStatus = addFriendIcon;
                 break;
-        case 1:
+            case 2:
                 relationStatus = friendRequestedIcon;
                 break;
-        case 1:
+            case 3:
                 relationStatus = friendIcon;
                 break;
         }
